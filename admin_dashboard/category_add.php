@@ -1,3 +1,6 @@
+<!-- <?php 
+require("config.php");
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,18 +53,17 @@
             <!-- table start -->
             <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Responsive Table</h6>
+                            <!-- <h6 class="mb-4">Categories Table</h6> -->
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">Category Id</th>
                                             <th scope="col">Category Name</th>
-                                            <th scope="col">created At</th>
-                                            <th scope="col">Last Updated At</th>
-                                            <th scope="col">Country</th>
-                                            <th scope="col">ZIP</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col">Created At</th>
+                                            <th scope="col">Last Updated</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">IsDeleted</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,7 +74,6 @@
                                             <td>jhon@email.com</td>
                                             <td>USA</td>
                                             <td>123</td>
-                                            <td>Member</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
@@ -81,7 +82,6 @@
                                             <td>mark@email.com</td>
                                             <td>UK</td>
                                             <td>456</td>
-                                            <td>Member</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
@@ -90,7 +90,6 @@
                                             <td>jacob@email.com</td>
                                             <td>AU</td>
                                             <td>789</td>
-                                            <td>Member</td>
                                         </tr>
                                     </tbody>
                                 </table>
