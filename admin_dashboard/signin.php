@@ -53,12 +53,13 @@
                             </a>
                             <h3>Sign In</h3>
                         </div>
+                        <form method="post" >
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="user_email_Login">
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="user_password_Login">
                             <label for="floatingPassword">Password</label>
                         </div>
                         <div class="d-flex align-items-center justify-content-between mb-4">
@@ -70,7 +71,41 @@
                         </div>
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
                         <p class="text-center mb-0">Don't have an Account? <a href="">Sign Up</a></p>
+                    </form>
+
+                    <?php
+                    
+                    require_once("config.php");
+                    $sql = "SELECT * FROM users";
+                   $data=$conn->query($sql);
+                   if ($_SERVER["REQUEST_METHOD"] === "POST"){
+                   foreach($data as $ele){
+                    if ($ele["email"]=== $_POST["user_email_Login"] && $ele["password"] === $_POST["user_password_Login"] && $ele["is_admin"] ){
+                        session_start();
+                        $_SESSION["user_id"]= $ele["user_id"];
+                        $_SESSION["user_name"]= $ele["user_name"];
+                        $_SESSION["email"]= $ele["email"];
+                        $_SESSION["phone"]= $ele["phone"];
+                        $_SESSION["create_at"]= $ele["create_at"];
+                        $_SESSION["password"]= $ele["password"];
+                        $_SESSION["pic"]= $ele["pic"];
+                        $_SESSION["last_login"]= $ele["last_login"];
+                        $_SESSION["is_admin"]= $ele["is_admin"];
+                        $_SESSION["address"]= $ele["address"];
+                        $_SESSION["is_deleted"]= $ele["is_deleted"];
+                        session_en();
+
+                  
+                    header("location:adminprofile.php");
+                     }} } else{
+                        echo("access denied");
+                    }
+
+
+                    ?>
+                   
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -93,3 +128,33 @@
 </body>
 
 </html>
+
+
+
+
+ require_once("config.php");
+$sql = "SELECT * FROM users";
+$conn->query($sql);
+$talab = ($conn->query($sql)) -> fetchAll(PDO::FETCH_ASSOC);
+// -> fetchAll(PDO::FETCH_ASSOC) لغى التكرار
+
+// $Flag = FALSE;
+
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
+  foreach($talab as $ele){
+    if ($ele["email"]=== $_POST["user_email_Login"] && $ele["password"] === $_POST["user_password_Login"]){
+    echo "<pre>";
+    print_r($ele);
+    echo "</pre>";
+        session_start();
+        $_SESSION["id"]= $ele["id"];
+        $_SESSION["name"]= $ele["name"];
+        $_SESSION["email"]= $ele["email"];
+        $_SESSION["phone"]= $ele["phone"];
+        $_SESSION["birthday_date"]= $ele["birthday_date"];
+        $_SESSION["password"]= $ele["password"];
+        $_SESSION["date_created"]= $ele["date_created"];
+        $_SESSION["date_last_login"]= $ele["date_last_login"];
+        $_SESSION["is_admin"]= $ele["is_admin"];
+      header("location: landpage.php");
+    } 

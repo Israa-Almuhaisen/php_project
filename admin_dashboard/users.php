@@ -140,8 +140,8 @@ include ("./includers/navbar.php");
                                             $html .= "<td>$e_last_login</td>";
                                             $html .= "<td>$e_is_admin</td>";
                                             $html .= "<td>$e_is_deleted</td>";
-                                            $html .= "<td><a href='delete_user.php?deleteid=$e_id'><button>delete</button></a>";
-                                            $html .="<a href='edite_user.php?editeid=$e_id'><button>edite</button></a></td></tr>";
+                                            $html .= "<td><a href='delete_user.php?deleteid=$e_id'><button>delete</button></a></td></tr>";
+                                            // $html .="<a href='edite_user.php?editeid=$e_id'><button>edite</button></a>";
                                             $i++;
                                         }
                                         echo $html;
