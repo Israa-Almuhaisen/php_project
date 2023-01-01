@@ -112,7 +112,7 @@
                                 $html .= "<td>$sto</td>";
                                 $html .= "<td>$dis</td>";
                                 $html .= "<td><a href='delete_product.php?deleteid=$P_id'><button>delete</button></a><hr><a href='edit_product.php?editid=$P_id'><buttont>edite</a></button></a></td></tr>";
-              
+
                             }
                                     $html .= 
                                 "</tbody>

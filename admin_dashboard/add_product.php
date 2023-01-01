@@ -82,6 +82,7 @@
     // add products in products table
       if($_SERVER["REQUEST_METHOD"]==="POST"){
         require_once("config.php");
+        // save photo in products folder
         $main_pic= $_FILES['pic_main'];
         $filename = $_FILES["pic_main"]["name"];
         $filename=trim($filename);
@@ -93,7 +94,7 @@
             echo "<h3>  Failed to upload image!</h3>";
         }
     
-
+        // insert products in database
         $sql = "INSERT INTO products (product_name, description, model_year, price, pic_main, in_stock, discount) VALUES ('$_POST[product_name]','$_POST[description]','$_POST[model_year]','$_POST[price]','$filename', '$_POST[in_stock]', '$_POST[discount]' )";
         $conn->query($sql);
         header("location: blank.php");
