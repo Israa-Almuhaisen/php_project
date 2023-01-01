@@ -64,14 +64,14 @@ require("config.php");
                                             <th scope='col'>Created At</th>
                                             <th scope='col'>Last Updated</th>
                                             <th scope='col'>Image</th>
-                                            <!-- <th scope='col'>IsDeleted</th> -->
+                                            <th scope='col'>IsDeleted</th>
                                             <th scope='col'>Edit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     ";
                                     
-                                        $sql = "SELECT * FROM categories WHERE category_is_deleted=0";
+                                        $sql = "SELECT * FROM categories";
                                         $data= $conn->query($sql);
                                         foreach($data as $elemant) {
 
@@ -80,8 +80,11 @@ require("config.php");
                                         $html .= "<td>$elemant[category_created_at]</td>";
                                         $html .= "<td>$elemant[category_last_updated_at]</td>";
                                         $html .= "<td><img src='$elemant[category_pic]' alt='$elemant[category_name]' width='100' height='100'></td>";                                            
-                                        // $html .= "<td>$elemant[category_is_deleted]</td>";
-                                        $html .= "<td></form> <form method='POST' action='category_delete.php'><input type='hidden' name='category_id' value='$elemant[category_id]' /><button type='submit' value='delete'>Delete</button></form><form action='./category_update.php' method='POST'><button type='submit' name = '$elemant[category_id]'>Update</button><br></td></tr>";
+                                        $html .= "<td>$elemant[category_is_deleted]</td>";
+                                        $html .= "<td><form method='POST' action='./category_delete.php'><input type='hidden' name='category_id' value='$elemant[category_id]' /><button type='submit' value='delete'>Delete</button></form>
+                                        <form action='./category_edit.php' method='POST'><input type='hidden' name='category_id' value='$elemant[category_id]' /><button type='submit' name = '$elemant[category_id]'>Edit</button></form><br>
+                                        </td>
+                                        </tr>";
                                         }
                                         $html .="</tbody></table>";
 

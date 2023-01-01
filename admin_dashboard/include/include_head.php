@@ -1,4 +1,12 @@
-    <!-- Favicon -->
+ 
+ 
+ <head>
+  
+
+    
+
+ <!-- Favicon -->
+
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
@@ -34,12 +42,18 @@
 
 
         <!-- Sidebar Start -->
-        <?php include('./include/include_sidebar.php');?>
+        <?php 
+        // include('./include/include_sidebar.php');
+        ?>
         <!-- Sidebar End -->
 
 
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
-            <?php include('./include/include_navbar.php');?>
+            <?php 
+            // include('./include/include_navbar.php');
+            ?>
             <!-- Navbar End -->
+            </body>
+ </html>
