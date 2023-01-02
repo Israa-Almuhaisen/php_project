@@ -14,13 +14,14 @@ $result =(($conn->query($sql))->fetch_array(MYSQLI_ASSOC)
 // edit products
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $e_name = $_POST['edit_product_name'];
+    $e_category = $_POST['edit_product_category'];
     $e_description = $_POST['edit_description'];
     $e_model = $_POST['edit_model_year'];
     $e_price = $_POST['edit_price'];
     $e_pic = $_POST['edit_pic_main'];
     $e_stock = $_POST['edit_in_stock'];
     $e_discount = $_POST['edit_discount'];
-    $sql = "UPDATE products SET `product_name`='$e_name',`description`='$e_description',`model_year`='$e_model',`price`='$e_price',`pic_main`='$e_pic',
+    $sql = "UPDATE products SET `product_name`='$e_name',`product_category`='$e_category',`description`='$e_description',`model_year`='$e_model',`price`='$e_price',`pic_main`='$e_pic',
     `in_stock`='$e_stock',`discount`='$e_discount' WHERE product_id = $id";
     $res = $conn->query($sql);
     
@@ -78,6 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
+                  placeholder="Password" name="edit_product_category"  value=<?php
+            echo $result["product_category"];
+            ?>>
+              <label for="floatingPassword">product_category</label>
+          </div>
+          <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingPassword"
                   placeholder="Password" name="edit_description" value=<?php
             echo $result["description"];
             ?>>
@@ -98,12 +106,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
               <label for="floatingPassword">price</label>
           </div>
           <div class="form-floating mb-3">
+          <input class="form-control bg-dark" type="file" name="edit_pic_main"
+          <?php echo $result["pic_main"];?>>
+              <label for="floatingPassword"></label>
+          </div>
+          <!-- <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
                   placeholder="Password" name="edit_pic_main" value=<?php
             echo $result["pic_main"];
             ?>>
               <label for="floatingPassword">pic_main</label>
-          </div>
+          </div> -->
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
                   placeholder="Password" name="edit_in_stock" value=<?php
