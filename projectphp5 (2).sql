@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2023 at 08:21 AM
+-- Generation Time: Jan 02, 2023 at 09:20 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -42,10 +42,10 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_created_at`, `category_last_updated_at`, `category_pic`, `category_is_deleted`) VALUES
 (1, 'Standard', '2023-01-02 00:15:36', NULL, './img/categories/Standard-YamahaFZ-07.png', 0),
-(2, 'Sport', '2023-01-02 00:19:38', '2023-01-01 22:24:00', './img/categories/Sport_kawasaki-ninja-zx.png', 1),
+(2, 'Sport', '2023-01-02 00:19:38', '2023-01-02 20:13:46', './img/categories/Sport_kawasaki-ninja-zx.png', 0),
 (3, 'Touring', '2023-01-02 00:20:25', '2023-01-01 22:25:44', './img/categories/Touring_harley-davidson-road-king.png', 0),
 (4, 'Cruiser', '2023-01-02 00:29:47', '2023-01-01 22:31:16', './img/categories/Cruiser_Indian-Chief.png', 0),
-(5, 'Dual-Sport', '2023-01-02 00:35:15', NULL, './img/categories/Dual-Sport_ktm-1090-adventure-r.jpg', 0),
+(5, 'Dual-Sport', '2023-01-02 00:35:15', '2023-01-02 20:13:58', './img/categories/Dual-Sport_ktm-1090-adventure-r.jpg', 1),
 (6, 'Scooter', '2023-01-02 00:39:27', NULL, './img/categories/Scooter_vespa.jpg', 0),
 (7, 'Electric', '2023-01-02 00:39:58', NULL, './img/categories/Electric_K-Choper-2.jpg', 0);
 
@@ -109,8 +109,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `description`, `model_year`, `brand`, `color`, `price`, `category_id`, `pic_main`, `pic_sub`, `rate`, `in_stock`, `is_discount`, `discount`, `product_create_at`, `product_last_update`, `product_is_deleted`) VALUES
-(1, 'Suzuki GSX-R1000', 'Introducing the latest Suzuki GSX-R1000: the most powerful, hardest-accelerating, cleanest-running GSX-R ever built. Compact Engine', 2001, 'Suzuki', 'Red', 15000, 2, '', '', 5, 0, 0, 0, '2023-01-02 01:11:12', NULL, 0),
-(2, 'suzuki gsx-r1000', 'Sports motorcycle', 2001, 'Suzuki', 'red', 15000, 2, '', '', 5, 10, 0, 0, '2023-01-02 01:13:03', NULL, 0);
+(1, 'Product 1', 'Introducing the latest Suzuki GSX-R1000: the most powerful, hardest-accelerating, cleanest-running GSX-R ever built. Compact Engine', 2001, 'Suzuki', 'Red', 15000, 2, '2023-adv150-under-seat-storage-915x584.webp', '', 5, 0, 0, 0, '2023-01-02 01:11:12', NULL, 0),
+(2, 'Product 4', 'Sports motorcycle', 2001, 'Suzuki', 'red', 15000, 4, '2021-pcx150-gallery-02-750x750.webp', './img/categories/Sport_kawasaki-ninja-zx.png', 5, 10, 0, 0, '2023-01-02 01:13:03', NULL, 0),
+(7, 'Product 1-2', 'Introducing the latest Suzuki GSX-R1000: the most powerful, hardest-accelerating, cleanest-running GSX-R ever built. Compact Engine', 2001, 'Suzuki', 'Red', 15000, 1, '2021-pcx-pearl_white-650x380.webp', '', 5, 0, 0, 0, '2023-01-02 01:11:12', NULL, 0),
+(8, 'Product 3-1', 'Sports motorcycle', 2001, 'Suzuki', 'red', 15000, 3, 'Dual-Sport_ktm-1090-adventure-r.jpg', '', 5, 10, 0, 0, '2023-01-02 01:13:03', NULL, 0),
+(9, 'Product Name', 'desc', 2004, 'yamaha', 'black', 20000, 3, '', '', 5, 2, 0, 0, '2023-01-02 19:56:01', NULL, 0),
+(11, 'Product Name', 'Introducing the latest Suzuki GSX-R1000: the most powerful, hardest-accelerating, cleanest-running GSX-R ever built. Compact Engine', 2001, 'Suzuki', 'Red', 15000, 5, '2023-adv150-under-seat-storage-915x584.webp', '', 5, 0, 0, 0, '2023-01-02 01:11:12', NULL, 0),
+(12, 'Product Name', 'Sports motorcycle', 2001, 'Suzuki', 'red', 15000, 6, '2021-pcx150-gallery-02-750x750.webp', './img/categories/Sport_kawasaki-ninja-zx.png', 5, 10, 0, 0, '2023-01-02 01:13:03', NULL, 0),
+(17, 'Product Name', 'Introducing the latest Suzuki GSX-R1000: the most powerful, hardest-accelerating, cleanest-running GSX-R ever built. Compact Engine', 2001, 'Suzuki', 'Red', 15000, 6, '2021-pcx-pearl_white-650x380.webp', '', 5, 0, 0, 0, '2023-01-02 01:11:12', NULL, 0),
+(18, 'Product Name', 'Sports motorcycle', 2001, 'Suzuki', 'red', 15000, 5, 'Dual-Sport_ktm-1090-adventure-r.jpg', '', 5, 10, 0, 0, '2023-01-02 01:13:03', NULL, 0),
+(19, 'Product Name', 'desc', 2004, 'yamaha', 'black', 20000, 3, '', '', 5, 2, 0, 0, '2023-01-02 19:56:01', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -212,7 +220,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `reviews`
