@@ -1,3 +1,11 @@
+<?php
+				session_start();
+
+				include("../admin_dashboard/config.php");
+				$sql = "select * from products";
+				$data= $conn->query($sql);
+				// print_r($data) ;
+				?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -172,35 +180,60 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center">
+				<?php
+				foreach($data as $ele){
+					if ($ele["is_discount"]){
+						echo '<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<div class="product-image">';
+							$pic=$ele["pic_main"];
+							$id=$ele["product_id"];
+							// echo $pic;
+						echo "<a href='single-product.php?product_id=$id'><img src='../admin_dashboard/img/products/$pic' alt=''></a>";
+						echo "</div>";
+						$name = $ele['product_name'];
+						echo "<h3>$name</h3>";
+						$old_price = $ele['price'];
+						$new_price =$old_price - ($ele['discount'] * $old_price)/100;
+						echo "<h3> <span class='product-price'><del>$old_price </del></span><span class='product-price'>$$new_price</span></h3>";
+						echo "<a href='add_to_cart.php?productid=$id' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a></div></div>";
+						// $url = getcwd();
+						// $url = (parse_url($url, PHP_URL_FRAGMENT));
+						// $url =str_replace('C:\xampp\htdocs',"localhost",$url);
+						// echo $url;
+						// $_SESSION["current_url"]= $url;
+					}
+				}
+				?>
+				<!-- <div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+							 <a href="single-product.html"><img src="../admin_dashboard/img/products/" alt=""></a> 
 						</div>
 						<h3>Strawberry</h3>
 						<p class="product-price"><span>Per Kg</span> 85$ </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div>
+				</div> -->
 				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
+					<!-- <div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
 						</div>
 						<h3>Berry</h3>
 						<p class="product-price"><span>Per Kg</span> 70$ </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
+					<!-- <div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
 						</div>
 						<h3>Lemon</h3>
 						<p class="product-price"><span>Per Kg</span> 35$ </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

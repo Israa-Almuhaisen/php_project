@@ -220,6 +220,8 @@ session_start();
 								</tr>
 								<?php
 								$total = 0;
+								if(isset($_SESSION["added_products"]) ){
+								
 								foreach ($_SESSION["added_products"] as $key => $ele){
 									$product_total =$ele[1]*$ele[6];
 									$total += $product_total;
@@ -227,7 +229,7 @@ session_start();
 									$html .= "<td>$ele[2]</td>";
 									$html .= "<td>$product_total</td></tr>";
 									echo $html;
-								}
+								}}
 								?>
 								<!-- <tr>
 									<td>Strawberry</td>
@@ -283,6 +285,7 @@ session_start();
 							$order_id = $order_id["order_id"];
 
 						// print_r($_POST);
+						if(isset($_SESSION["added_products"]) ){
 						foreach($_SESSION["added_products"] as $ele){
 							$total = $ele[1]*$ele[6];
 							$sql = "INSERT INTO `order_details`(`order_id`, `product_id`, `quantity`, `total`) VALUES ('$order_id','$ele[0]','$ele[1]','$total')";
@@ -290,7 +293,8 @@ session_start();
 							// print_r($product);
 						}
 						echo "order sent successfully";
-					}
+						unset($_SESSION['added_products']);
+					}}
 					?>
 				</div>
 			</div>
