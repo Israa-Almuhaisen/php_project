@@ -1,5 +1,8 @@
 <?php
 include ("./includers/head.php");
+
+session_start();
+
 ?>
 <body>
 <div class="container-fluid position-relative d-flex p-0">
@@ -91,7 +94,7 @@ include ("./includers/navbar.php");
                     <!-- table -->
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Responsive Table</h6>
+                            <h6 class="mb-4">USERS</h6>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -100,13 +103,10 @@ include ("./includers/navbar.php");
                                             <th scope="col">user_name</th>
                                             <th scope="col">phone</th>
                                             <th scope="col">email</th>
-                                            <!-- <th scope="col">password</th> -->
                                             <th scope="col">address</th>
-                                            <!-- <th scope="col">pic</th> -->
                                             <th scope="col">create_at</th>
                                             <th scope="col">last_login</th>
                                             <th scope="col">is_admin</th>
-                                            <th scope="col">is_deleted</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -118,6 +118,8 @@ include ("./includers/navbar.php");
                                         $i = 1;
                                         $html = "";
                                         foreach($data as $row) {
+                                            if ($row['is_deleted'] == 0){
+
                                             $e_id = $row['user_id'];
                                             $e_name = $row['user_name'];
                                             $e_phone = $row['phone'];
@@ -128,51 +130,20 @@ include ("./includers/navbar.php");
                                             $e_create_at = $row['create_at'];
                                             $e_last_login = $row['last_login'];
                                             $e_is_admin = $row['is_admin'];
-                                            $e_is_deleted = $row['is_deleted'];
+                                            if($e_is_admin == 1){ $x = 'Yes';} else { $x = 'No';}
                                             $html .= "<tr><th scope='row'>$i</th>";
                                             $html .= "<td>$e_name</td>";
                                             $html .= "<td>$e_phone</td>";
                                             $html .= "<td>$e_email</td>";
-                                            // $html .= "<td>$e_password</td>";
                                             $html .= "<td>$e_address</td>";
-                                            // $html .= "<td>$e_pic</td>";
                                             $html .= "<td>$e_create_at</td>";
                                             $html .= "<td>$e_last_login</td>";
-                                            $html .= "<td>$e_is_admin</td>";
-                                            $html .= "<td>$e_is_deleted</td>";
+                                            $html .= "<td>" . $x ."</td>";
                                             $html .= "<td><a href='delete_user.php?deleteid=$e_id'><button>delete</button></a></td></tr>";
-                                            // $html .="<a href='edite_user.php?editeid=$e_id'><button>edite</button></a>";
                                             $i++;
-                                        }
+                                        } }
                                         echo $html;
                                         ?>
-                                        <!-- <tr>
-                                            <th scope="row">1</th>
-                                            <td>John</td>
-                                            <td>Doe</td>
-                                            <td>jhon@email.com</td>
-                                            <td>USA</td>
-                                            <td>123</td>
-                                            <td>Member</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>mark@email.com</td>
-                                            <td>UK</td>
-                                            <td>456</td>
-                                            <td>Member</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>jacob@email.com</td>
-                                            <td>AU</td>
-                                            <td>789</td>
-                                            <td>Member</td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
