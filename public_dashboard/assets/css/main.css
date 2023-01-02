@@ -402,7 +402,7 @@ p:last-child {
 }
 
 .orange-text {
-  color: #ff0000;
+  color: #f21111;
 }
 
 .blue-bg {
@@ -1324,7 +1324,7 @@ ul.product-share li:hover a {
 }
 
 .service-menu ul li a:hover {
-  color: #ffe200;css
+  color: #ffe200;
 }
 
 .single-product-item {
@@ -1580,7 +1580,7 @@ div.owl-controls, .owl-controls div {
   display: block;
   line-height: 22px;
   font-size: 18px;
-  margin-top: 15px;
+  margin-top: 19px;
 }
 
 .list-box .content p {
@@ -2180,9 +2180,9 @@ gg
 .feature-bg:after {
   background-image: url(../img/abou.jpg);
   position: absolute;
-  right: 40px;
+  right: 90px;
   top: 0;
-  width: 40%;
+  width: 35%;
   height: 100%;
   content: "";
   background-size: cover;
@@ -2194,20 +2194,29 @@ gg
 }
 
 .team-bg-1 {
-  background-image: url(../img/team/team-1.jpg);
+  background-image: url(../img/team/walaa.jpg);
 }
 
 .team-bg-2 {
-  background-image: url(../img/team/team-2.jpg);
+  background-image: url(../img/team/anas.jpg);
 }
 
 .team-bg-3 {
-  background-image: url(../img/team/team-3.jpg);
+  background-image: url(../img/team/oday.jpg);
 }
 
 .team-bg-4 {
-  background-image: url(../img/team/team-4.jpg);
+  background-image: url(../img/team/obida.jpg);
+  position: relative;
+  left: 150px
 }
+.team-bg-5 {
+  background-image: url(../img/team/israa.jpg);
+  
+  position: relative;
+  left: 250px;
+}
+
 
 .team-bg {
   height: 400px;
@@ -2774,4 +2783,12 @@ table.order-details tbody td {
   display: table-cell;
   vertical-align: middle;
   width: 100%;
+}
+.nn1{
+  position: relative;
+  left: 150px;
+}
+.nn2{
+  position: relative;
+  left: 250px;
 }

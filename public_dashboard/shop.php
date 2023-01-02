@@ -1,3 +1,7 @@
+<?php 
+require("config1.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +11,7 @@
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>About</title>
+	<title>Shop</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="../public_dashboard/assets/img/th.jpg">
@@ -51,7 +55,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.html">
-								<img src="../public_dashboard/assets/img/logomotor (2).png" alt="">
+								<img src="../public_dashboard/assets/img/logomotor (2).png"alt="">
 							</a>
 						</div>
 						<!-- logo -->
@@ -66,20 +70,8 @@
 									</ul>
 								</li>
 								<li><a href="about.html">About</a></li>
-								<!-- <li><a href="#">Pages</a>
-									<ul class="sub-menu">
-										<li><a href="404.html">404 page</a></li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="contact.html">Contact</a></li>
-										<li><a href="news.html">News</a></li>
-										<li><a href="shop.html">Shop</a></li>
-									</ul>
-								</li> -->
-								
+							
 								<li><a href="contact.html">Contact</a></li>
-
 								<li><a href="shop.html">Shop</a>
 									<ul class="sub-menu">
 										<li><a href="shop.html">Shop</a></li>
@@ -88,11 +80,9 @@
 										<li><a href="cart.html">Cart</a></li>
 									</ul>
 								</li>
-								<li><a href="">login</a></li>
-								<li>	
-								
+								<li><a href="../admin_dashboard/signin.html">login</a></li>
+								<li>
 									<div class="header-icons">
-										
 										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 									</div>
@@ -127,15 +117,17 @@
 		</div>
 	</div>
 	<!-- end search arewa -->
-	
+	<!-- _________________________________________________________________________ -->
+
+
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<!-- <p>We sale fresh fruits</p> -->
-						<h1>About Us</h1>
+						<p>Fresh and Organic</p>
+						<h1>Shop</h1>
 					</div>
 				</div>
 			</div>
@@ -143,138 +135,95 @@
 	</div>
 	<!-- end breadcrumb section -->
 
-	<!-- featured section -->
-	<div class="feature-bg">
+	<!-- products -->
+	<div class="product-section mt-150 mb-150">
 		<div class="container">
+
 			<div class="row">
-				<div class="col-lg-7">
-					<div class="featured-text">
-						<h2 class="pb-3">Why <span class="orange-text">Motorbike</span></h2>
-						<div class="row">
-							<div class="col-lg-6 col-md-6 mb-4 mb-md-5">
-								<div class="list-box d-flex">
-									<div class="list-icon">
-										<i class="fas fa-shipping-fast"></i>
-									</div>
+                <div class="col-md-12">
+                    <div class="product-filters">
+                        <ul>
+									<li class="active" data-filter="*">All</li>
+								<?php
+								$select_categories = $conn->prepare("SELECT * FROM `categories` WHERE category_is_deleted=0"); 
+								$select_categories->execute();
+								if($select_categories->rowCount() > 0){
+								while($fetch_category = $select_categories->fetch(PDO::FETCH_ASSOC)){
+								?>									
 									
-									<div class="content">
-										<h3>Home Delivery</h3>
-										<p></p>
+									<li data-filter=".<?= $fetch_category['category_id']; ?>"><?= $fetch_category['category_name']; ?></li>
+								<?php
+								}
+								}else{
+								echo '<p class="empty">no products found!</p>';
+								}
+								?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+			<div class="row product-lists">
+			<?php
+					$select_products = $conn->prepare("SELECT * FROM `products`"); 
+					$select_products->execute();
+					if($select_products->rowCount() > 0){
+					while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
+					?>
+
+						<!-- <form action="" method="post" class="row product-lists box"> -->
+							<div class="col-lg-4 col-md-6 text-center <?= $fetch_product['category_id']; ?>">
+								<div class="single-product-item">
+									<div class="product-image">
+										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>">
+										<img width=200px height=200px src='../upload/<?= $fetch_product['pic_main']; ?>' alt="">
+										</a>
+										<h3><?= $fetch_product['product_name']; ?></h3>
+										<p class="product-price"><span><?= $fetch_product['color']; ?></span> <?= $fetch_product['price']; ?>$ </p>
+										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>" class="cart-btn">Select</a>					
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-6 col-md-6 mb-5 mb-md-5">
-								<div class="list-box d-flex">
-									<div class="list-icon">
-										<i class="fas fa-money-bill-alt"></i>
-									</div>
-									<div class="content">
-										<h3>Best Price</h3>
-										<p></p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 mb-5 mb-md-5">
-								<div class="list-box d-flex">
-									<div class="list-icon">
-										<i class="fas fa-briefcase"></i>
-									</div>
-									<div class="content">
-										<h3>Custom Box</h3>
-										<p></p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="list-box d-flex">
-									<div class="list-icon">
-										<i class="fas fa-sync-alt"></i>
-									</div>
-									<div class="content">
-										<h3>Quick Refund</h3>
-										<p></p>
-									</div>
-								</div>
-							</div>
+						<!-- </form> -->
+					<?php
+					}
+					}else{
+					echo '<p class="empty">no products found!</p>';
+					}
+					?>
+
+
+				<!-- <div class="col-lg-4 col-md-6 text-center strawberry">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
 						</div>
+						<h3>Strawberry</h3>
+						<p class="product-price"><span>Per Kg</span> 85$ </p>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end featured section -->
+				</div> -->
 
-	<!-- shop banner -->
-	<!-- <section class="shop-banner">
-    	<div class="container">
-        	<h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
-            <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
-            <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
-        </div>
-    </section> -->
-	<!-- end shop banner -->
-
-	<!-- team section -->
-	<div class="mt-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="section-title">
-						<h3>Our <span class="orange-text">Team</span></h3>
-						<p>Combined effort counts for success.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="single-team-item">
-						<div class="team-bg team-bg-1"></div>
-						<h4>Walaa Obeidat</h4>
-						
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="single-team-item">
-						<div class="team-bg team-bg-2"></div>
-						<h4> Talab Yaseen</h4>
-						
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
-					<div class="single-team-item">
-						<div class="team-bg team-bg-3"></div>
-						<h4>Oday Alghoul </h4>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-		<div class="mt-150">
-		<div class="container">
-			
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="single-team-item">
-						<div class="team-bg team-bg-4"></div>
-						<h4 class="nn1">Obaida Althnaibat</h4>
-						
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="single-team-item">
-						<div class="team-bg team-bg-5"></div>
-						<h4 class="nn2">Israa Almuhaisen</h4>
-						
-					</div>
-				</div>
 				
 			</div>
+
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="pagination-wrap">
+						<ul>
+							<li><a href="#">Prev</a></li>
+							<li><a href="#">1</a></li>
+							<li><a class="active" href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">Next</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<!-- end team section -->
-
-<br>
+	<!-- end products -->
+<!-- __________________________________________________________ -->
 	<!-- logo carousel -->
 	<div class="logo-carousel-section">
 		<div class="container">
@@ -305,16 +254,13 @@
 		</div>
 	</div>
 	<!-- end logo carousel -->
-	
 
-	
-	
 	<!-- copyright -->
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Motorbike</a>,  All Rights Reserved.<br>
+					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
 						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
 					</p>
 				</div>

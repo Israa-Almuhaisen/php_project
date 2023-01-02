@@ -1,4 +1,7 @@
 <?php
+include("./config.php");
+
+
  session_start();
 include ("./includers/head.php");
 ?>
@@ -23,7 +26,7 @@ include ("./includers/navbar.php");
                                         <div class="col-sm-12 col-xl-8">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4">edit your profile</h6>
-                            <form method="POST">
+                            <form method="POST" enctype="multipart/form-data">
                                 <div class="row mb-3">
                                     <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
@@ -50,7 +53,7 @@ include ("./includers/navbar.php");
                                 </div>
                                 <div class="row mb-3">
                                 <label for="formFile" class="form-label">change your photo</label>
-                                <input class="form-control bg-dark" type="file" id="formFile"name="user_pic" value=<?php echo  $_SESSION["pic"]; ?>>
+                                <input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" required>
                               </div>
                                
                                 <button type="submit" class="btn btn-primary">edit</button>
@@ -91,58 +94,44 @@ include("./config.php");
  
 // If upload button is clicked ...
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    print_r ($_FILES);
+    // print_r ($_FILES)
     $new_name=$_POST["name"];
     $new_email=$_POST["email"];
     $new_phone=$_POST["user_phone"];
-    $new_pic=$_POST["user_pic"];
     $new_password=$_POST["user_pass"];
-    $filename = $_FILES["uploadfile"]["name"];
-    $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "./image/" . $filename;
- 
-     
- 
-    // Get all the submitted data from the form
-    // $sql = "UPDATE `users` SET `user_name`='$new_name',`phone`='$new_phone',`email`='$new_email',`password`='$new_password',`pic`=' $new_pic'WHERE user_id= $_SESSION[user_id]";
- 
-    // Execute query
-    // mysqli_query($con, $sql);
- 
-    // Now let's move the uploaded image into the folder: image
-    if (move_uploaded_file($tempname, $folder)) {
-        echo "<h3>  Image uploaded successfully!</h3>";
-    } else {
-        echo "<h3>  Failed to upload image!</h3>";
-    }
-}
+
+
+
+    $image = $_FILES['image']['name'];
+    // قراءة حجم الصورة
+       $image_size = $_FILES['image']['size'];
+    // تحديد المسار الموجودة فيه الصورة
+       $image_tmp_name = $_FILES['image']['tmp_name'];
+    // تحديد المسار الجديد للصورة و تذكر انه يجب انشاء مجلد جديد مشابه للاسم المختار في المسار الجديد
+       $image_folder = './img/'.$image;
+    
+    
+    // قراءة جميع المنتجات الموجودة في الداتابيس لتأكد من ان اسم المنتج غير متكرر , جدول المنتجات-عمود الاسم
+    
+    // علامة الاستفهام تعني انتظار عنصر في فانكشين ال الاكسكيوت , اذا بدك حط المتغير مباشرة ولكن الافضل هو هاي
+    
+    
+    // القيام برفع كافة تفاصيل المنتج التي تم ادخالها و يجب التاكد من ان عدد الاعمدة مساوي لعدد البيانات المراد رفعها
+    
+          $insert_products = $conn->prepare("INSERT INTO `users`(pic) VALUES(?)");
+          $insert_products->execute([$image]);
+    
+    
+    // شرط للتأكد من ان حجم الصورة اقل من 2 ميجا
+    
+    
+          if($insert_products){
+             if($image_size < 2000000){
+                move_uploaded_file($image_tmp_name, $image_folder);
+             }
+    
+          }
+
+        }
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Warning: Undefined array key "uploadfile" in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 100
-
-Warning: Trying to access array offset on value of type null in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 100
-
-Warning: Undefined array key "uploadfile" in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 101
-
-Warning: Trying to access array offset on value of type null in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 101
-Failed to upload image!
-Warning: Undefined array key "phone" in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 96 Warning: Undefined array key "pic" in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 97 Warning: Undefined array key "password" in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 98 Warning: Undefined array key "uploadfile" in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 99 Warning: Trying to access array offset on value of type null in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 99 Warning: Undefined array key "uploadfile" in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 100 Warning: Trying to access array offset on value of type null in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 100 Warning: Undefined variable $con in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 109 Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php:109 Stack trace: #0 C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php(109): mysqli_query(NULL, 'UPDATE `users` ...') #1 {main} thrown in C:\xampp\htdocs\php_project\admin_dashboard\adminprofile.php on line 109

@@ -75,7 +75,7 @@
               <input type="text" class="form-control" id="floatingPassword"
                   placeholder="discount" name="discount">
               <label for="floatingPassword">discount</label><br>
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <button type="submit" class="btn btn-primary">Add Product</button>
           </div>
           
       </div>

@@ -92,10 +92,12 @@
 										<li><a href="checkout.html">Dual-Sport</a></li>
 										<li><a href="single-product.html">Scooter</a></li>
 										<li><a href="cart.html">Electric</a></li>
+									
 									</ul>
+								
 								</li>
-								<li><a href="">login</a></li>
-								<li><a href="">register</a></li>
+								<!-- <li><a href="../loginuser.php">login</a></li>
+								<li><a href="">register</a></li> -->
 								<li>
 									<div class="header-icons">
 										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart fa-2x"></i></a>

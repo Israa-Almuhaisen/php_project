@@ -137,8 +137,8 @@ include("../admin_dashboard/config.php");
 	<!-- single product -->
 	<?php
 	// nnnn = product id sent in url
-	// $product_id = $_GET["nnnn"];
-	$product_id = 1;
+	$product_id = $_GET["pid"];
+	// $product_id = 1;
 	$sql = "select * from products where product_id = $product_id";
 	$data= $conn->query($sql);
 	$product = mysqli_fetch_array($data, MYSQLI_ASSOC);
