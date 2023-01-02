@@ -196,7 +196,7 @@ ALTER TABLE `order_details`
   ADD PRIMARY KEY (`order_detail_id`);
 
 --
--- Indexes for table `products`
+-- Indexes for table `produc ts`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`);
