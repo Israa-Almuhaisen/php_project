@@ -17,6 +17,9 @@
 	<!-- title -->
 	<title>Fruitkha - Slider Version</title>
 
+    <script src="https://kit.fontawesome.com/18b0a154a3.js" crossorigin="anonymous"></script>
+
+
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="../public_dashboard/assets/img/th.jpg">
 	<!-- google font -->
@@ -79,17 +82,21 @@
 								<li><a href="contact.html">Contact</a></li>
 								<li><a href="shop.html">Shop</a>
 									<ul class="sub-menu">
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="single-product.html">Single Product</a></li>
-										<li><a href="cart.html">Cart</a></li>
+										<li><a href="shop.html">Standard</a></li>
+										<li><a href="shop.html">Sport</a></li>
+										<li><a href="shop.html">Cruiser</a></li>
+										<li><a href="checkout.html">Dual-Sport</a></li>
+										<li><a href="single-product.html">Scooter</a></li>
+										<li><a href="cart.html">Electric</a></li>
 									</ul>
 								</li>
 								<li><a href="../loginuser.php">login</a></li>
+							
+								<li><a href="">register</a></li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart fa-2x"></i></a>
+										<!-- <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a> -->
 									</div>
 								</li>
 							</ul>
@@ -105,7 +112,7 @@
 	<!-- end header -->
 	
 	<!-- search area -->
-	<div class="search-area">
+	<!-- <div class="search-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -120,7 +127,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- end search area -->
 
 	<!-- home page slider -->
@@ -133,9 +140,9 @@
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
 							
-								<h1>Let the good times roll</h1>
+								<h1>Own your dream Motorcycle</h1>
 								<div class="hero-btns">
-									<a href="shop.html" class="boxed-btn">Motor Collection</a>
+									<a href="shop.html" class="boxed-btn">shop now</a>
 									
 								</div>
 							</div>
@@ -167,18 +174,21 @@
 	<!-- end home page slider -->
 
 
-	<!-- product section -->
+	<!-- Categories section -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
+						<h3><span class="orange-text">Our</span> Categories</h3>
+						<p>No road is too long when you have good company</p>
 						<h3><span class="orange-text">On</span> Sale </h3>
 						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p> -->
 					</div>
 				</div>
 			</div>
 
+			
 			<div class="row">
 				<?php
 				foreach($data as $ele){
@@ -208,37 +218,97 @@
 				<!-- <div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
+							<a href="single-product.html"><img src="../img/category/standard.png" alt=""></a>
 							 <a href="single-product.html"><img src="../admin_dashboard/img/products/" alt=""></a> 
 						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
+						<h3>Standard</h3>
+						<p class="product-price"> <span>1,999$ - 6,499$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
 				</div> -->
 				<div class="col-lg-4 col-md-6 text-center">
 					<!-- <div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+							<a href="single-product.html"><img src="../img/category/sport.png" alt=""></a>
 						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
+						<h3>Sport</h3>
+						<p class="product-price"> <span>2,199$ - 8,499$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div> -->
 				</div>
 				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<!-- <div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+							<a href="single-product.html"><img src="../img/category/cruiser1.png" alt=""></a>
 						</div>
-						<h3>Lemon</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
+						<h3>Cruiser</h3>
+						<p class="product-price"> <span>6,499$ - 18,799$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div> -->
 				</div>
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="../img/category/dual-sport.png" alt=""></a>
+						</div>
+						<h3>Dual-Sport</h3>
+						<p class="product-price"> <span>3,399$ - 9,000$</span> </p>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div>
+					<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<div class="product-image">
+								<a href="single-product.html"><img src="../img/category/Aprilia-SXR-160-.png" alt=""></a>
+							</div>
+							<h3>Scooter</h3>
+							<p class="product-price"> <span>1,349$ - 7,499$</span> </p>
+							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						</div>
+					</div>
+						<div class="col-lg-4 col-md-6 text-center">
+							<div class="single-product-item">
+								<div class="product-image">
+									<a href="single-product.html"><img src="../img/category/electric.png" alt=""></a>
+								</div>
+								<h3>Electric</h3>
+								<p class="product-price"> <span>2,399$ - 6,499$</span> </p>
+								<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+							</div>
+						</div>
+						<!-- <?php
+			require_once("../admin_dashboard/config.php");
+			$sql = "SELECT * FROM categories"; // query sentence
+                                $conn->query($sql); // execute query 
+                                $array = ($conn->query($sql));                 
+                            
+																foreach($array as $ele){
+							$category = "<div class='row'>
+								<div class='col-lg-4 col-md-6 text-center'>
+									<div class='single-product-item'>
+										<div class='product-image'>";
+
+							$category_pic=$ele['category_pic'];
+							echo $category_pic;
+							$category_name=$ele['category_name'];
+							$category_pri=$ele['category_price'];
+							
+							$category .=	"<a href='single-product.html'><img src='/$category_pic' alt=''></a>
+							</div>";
+							$category .= "<h3>$category_name</h3>";
+							$category .= "<p class='product-price'> <span>$category_pri</span> </p>
+							<a href='cart.html' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a>
+						</div>
+					</div>
+				</div>";
+					echo $category;
+						}
+							?> -->
+							
 			</div>
 		</div>
 	</div>
-	<!-- end product section -->
+	<!-- end Categories section -->
 
 	<!-- cart banner section -->
 	<section class="cart-banner pt-100 pb-100">
@@ -250,21 +320,21 @@
                     	<div class="price-box">
                         	<div class="inner-price">
                                 <span class="price">
-                                    <strong>30%</strong> <br> off per kg
+                                    <strong>30%</strong> <br> for Cruiser category
                                 </span>
                             </div>
                         </div>
-                    	<img src="assets/img/a.jpg" alt="">
+                    	<img src="../img/category/cruiser1.png" alt="">
                     </div>
                 </div>
                 <!--Content Column-->
                 <div class="content-column col-lg-6">
 					<h3><span class="orange-text">Deal</span> of the month</h3>
-                    <h4>Hikan Strwaberry</h4>
-                    <div class="text">Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</div>
+                    <h4>Cruiser Bikes</h4>
+                    <div class="text">A cruiser motorcycle is a motorcycle in the style of American machines from the 1930s to the early 1960s, including those made by Harley-Davidson, Indian, Excelsior and Henderson. The riding position usually places the feet forward and the hands up, with the spine erect or leaning back slightly. Typical cruiser engines emphasize easy rideability and shifting, with plenty of low-end torque but not necessarily large amounts of horsepower, and are traditionally V-twins, but inline engines have become more common.</div>
                     <!--Countdown Timer-->
                     <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2020/2/01"><div class="counter-column"><div class="inner"><span class="count">00</span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Secs</div></div></div></div>
-                	<a href="cart.html" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                	<a href="cart.html" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Shop Now </a>
                 </div>
             </div>
         </div>
@@ -279,12 +349,13 @@
 					<div class="testimonial-sliders">
 						<div class="single-testimonial-slider">
 							<div class="client-avater">
-								<img src="assets/img/avaters/avatar1.png" alt="">
+								<img src="عدي.jpeg" alt="">
 							</div>
 							<div class="client-meta">
-								<h3>Saira Hakim <span>Local shop owner</span></h3>
+								<h3>Oday AL-ghoul<span>Local shop owner</span></h3>
 								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+									" Director and owner of Motorbike Company
+										He has a great experience in the world of bicycles, he traveled to several countries around the world and toured until he was saturated with sufficient knowledge to serve the local community "
 								</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
@@ -293,26 +364,12 @@
 						</div>
 						<div class="single-testimonial-slider">
 							<div class="client-avater">
-								<img src="assets/img/avaters/avatar2.png" alt="">
+								<img src="ولاء.jpeg" alt="">
 							</div>
 							<div class="client-meta">
-								<h3>David Niph <span>Local shop owner</span></h3>
+								<h3>Wala' obeidat <span>Local shop owner</span></h3>
 								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-								</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="assets/img/avaters/avatar3.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Jacob Sikim <span>Local shop owner</span></h3>
-								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+									" Director of Public Relations and the owner of a prominent footprint in the development and advancement of our dear company, Ms. Walaa has a great reputation in public relations and commercial affairs "
 								</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
@@ -332,16 +389,16 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-bg">
-						<a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
+						<a href="https://www.youtube.com/watch?v=eZS_UbALG0s" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-text">
-						<p class="top-sub">Since Year 1999</p>
-						<h2>We are <span class="orange-text">Fruitkha</span></h2>
-						<p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum velit. Nam eu molestie lorem.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p>
-						<a href="about.html" class="boxed-btn mt-4">know more</a>
+						<p class="top-sub">Since Year 2023</p>
+						<h2>We are <span class="orange-text">MOTORBIKE</span></h2>
+						<p>We strive to provide the best possible service to motorcycle and scooter enthusiasts. Facilitating the process of owning motorcycles and scooters through their acquisition without down payment and easy installments.</p>
+						<p>The world of motorcycles will take you from the prison of movement to the freedom of movement, and that we seek to provide through us.</p>
+						<a href="about.html" class="boxed-btn mt-4">About US</a>
 					</div>
 				</div>
 			</div>
@@ -350,13 +407,13 @@
 	<!-- end advertisement section -->
 	
 	<!-- shop banner -->
-	<section class="shop-banner">
+	<!-- <section class="shop-banner">
     	<div class="container">
         	<h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
             <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
             <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
         </div>
-    </section>
+    </section> -->
 	<!-- end shop banner -->
 
 	<!-- logo carousel -->
@@ -398,18 +455,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
-						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
+					<p><i class="fa-solid fa-envelope"></i> obaidaalthunibat@gmail.com<br>
+					<i class="fa-solid fa-phone"></i> +00962781841055
 					</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">
 					<div class="social-icons">
 						<ul>
-							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+							<li><a href="https://web.facebook.com/darwazeh.motors/?_rdc=1&_rdr" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="https://www.instagram.com/darwazeh.motors/" target="_blank"><i class="fab fa-instagram"></i></a></li>
 						</ul>
 					</div>
 				</div>

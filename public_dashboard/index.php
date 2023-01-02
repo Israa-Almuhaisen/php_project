@@ -143,7 +143,7 @@
 					<div class="hero-text">
 						<div class="hero-text-tablecell">
 							<!-- <p class="subtitle">Fresh & Organic</p> -->
-							<h1>Own your dream bike</h1>
+							<h1>Own your dream Motorcycle</h1>
 							<div class="hero-btns">
 								<a href="shop.html" class="boxed-btn">shop now</a>
 								<!-- <a href="contact.html" class="bordered-btn">Contact Us</a> -->
