@@ -1,3 +1,11 @@
+<?php
+				session_start();
+
+				include("../admin_dashboard/config.php");
+				$sql = "select * from products";
+				$data= $conn->query($sql);
+				// print_r($data) ;
+				?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,41 +181,69 @@
 					<div class="section-title">	
 						<h3><span class="orange-text">Our</span> Categories</h3>
 						<p>No road is too long when you have good company</p>
+						<h3><span class="orange-text">On</span> Sale </h3>
+						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p> -->
 					</div>
 				</div>
 			</div>
 
 			
 			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center">
+				<?php
+				foreach($data as $ele){
+					if ($ele["is_discount"]){
+						echo '<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<div class="product-image">';
+							$pic=$ele["pic_main"];
+							$id=$ele["product_id"];
+							// echo $pic;
+						echo "<a href='single-product.php?product_id=$id'><img src='../admin_dashboard/img/products/$pic' alt=''></a>";
+						echo "</div>";
+						$name = $ele['product_name'];
+						echo "<h3>$name</h3>";
+						$old_price = $ele['price'];
+						$new_price =$old_price - ($ele['discount'] * $old_price)/100;
+						echo "<h3> <span class='product-price'><del>$old_price </del></span><span class='product-price'>$$new_price</span></h3>";
+						echo "<a href='add_to_cart.php?productid=$id' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a></div></div>";
+						// $url = getcwd();
+						// $url = (parse_url($url, PHP_URL_FRAGMENT));
+						// $url =str_replace('C:\xampp\htdocs',"localhost",$url);
+						// echo $url;
+						// $_SESSION["current_url"]= $url;
+					}
+				}
+				?>
+				<!-- <div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/standard.png" alt=""></a>
+							 <a href="single-product.html"><img src="../admin_dashboard/img/products/" alt=""></a> 
 						</div>
 						<h3>Standard</h3>
 						<p class="product-price"> <span>1,999$ - 6,499$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div>
+				</div> -->
 				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
+					<!-- <div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/sport.png" alt=""></a>
 						</div>
 						<h3>Sport</h3>
 						<p class="product-price"> <span>2,199$ - 8,499$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
+					<!-- <div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/cruiser1.png" alt=""></a>
 						</div>
 						<h3>Cruiser</h3>
 						<p class="product-price"> <span>6,499$ - 18,799$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
