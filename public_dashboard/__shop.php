@@ -2,7 +2,6 @@
 require("config1.php");
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,11 +39,11 @@ require("config1.php");
 <body>
 	
 	<!--PreLoader-->
-    <!-- <div class="loader">
+    <div class="loader">
         <div class="loader-inner">
             <div class="circle"></div>
         </div>
-    </div> -->
+    </div>
     <!--PreLoader Ends-->
 	
 	<!-- header -->
@@ -121,84 +120,108 @@ require("config1.php");
 	<!-- _________________________________________________________________________ -->
 
 
-
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>All Our Products</p>
+						<p>All Product</p>
 						<h1>Shop</h1>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- end breadcrumb section -->
 
-
+	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-		<div class="row">
+
+			<div class="row">
                 <div class="col-md-12">
                     <div class="product-filters">
                         <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".1">Standard</li>
-                            <li data-filter=".2">Sport</li>
-                            <li data-filter=".3">Touring</li>
-							<li data-filter=".4">Cruiser</li>
-							<li data-filter=".5">Dual-Sport</li>
-							<li data-filter=".6">Scooter</li>
-
+									<li class="active" data-filter="*">All</li>
+								<?php
+								$select_categories = $conn->prepare("SELECT * FROM `categories` WHERE category_is_deleted=0"); 
+								$select_categories->execute();
+								if($select_categories->rowCount() > 0){
+								while($fetch_category = $select_categories->fetch(PDO::FETCH_ASSOC)){
+								?>									
+									
+									<li data-filter=".<?= $fetch_category['category_id']; ?>"><?= $fetch_category['category_name']; ?></li>
+								<?php
+								}
+								}else{
+								echo '<p class="empty">no products found!</p>';
+								}
+								?>
                         </ul>
                     </div>
                 </div>
             </div>
 
-<?php
-  $select_products = $conn->prepare("SELECT * FROM `products`"); 
-  $select_products->execute();
-  if($select_products->rowCount() > 0){
-   while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
-?>
-<form action="" method="post" class="row product-lists box">
-   <input type="hidden" name="pid" value="<?= $fetch_product['product_id']; ?>">
-   <input type="hidden" name="name" value="<?= $fetch_product['product_name']; ?>">
-   <input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
-   <input type="hidden" name="image" value="<?= $fetch_product['pic_main']; ?>">
-   
-    <div class="col-lg-8 col-md-6 text-center <?= $fetch_product['category_id']; ?>">
-	<div class="single-product-item">
-   <a href="show.php?pid=<?= $fetch_product['product_id']; ?>"></a>
-   <img src='../upload/<?= $fetch_product['pic_main']; ?>' alt="">
-   <div class="name"><?= $fetch_product['product_name']; ?></div>
-   <div class="flex">
-	  <div class="product-price"><span>$</span><?= $fetch_product['price']; ?><span>/-</span></div>
-	  <!-- <input type="number" name="qty" class="product-price" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1"> -->
-   </div>
-   <!-- <input type="submit" value="add to cart" class="cart-btn" name="add_to_cart"> -->
-   <a class="cart-btn" href="single-product.php?pid=<?= $fetch_product['product_id']; ?>">Select</a>
-   <!-- <a class="cart-btn" href="show.php?pid=<?= $fetch_product['product_id']; ?>">Select</a> -->
-   </div>
-   </div>
-</form>
-<?php
-   }
-}else{
-   echo '<p class="empty">no products found!</p>';
-}
-?>
+			<div class="row product-lists">
+			<?php
+					$select_products = $conn->prepare("SELECT * FROM `products`"); 
+					$select_products->execute();
+					if($select_products->rowCount() > 0){
+					while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
+					?>
 
-		
-		
-<!-- </div> -->
+						<!-- <form action="" method="post" class="row product-lists box"> -->
+							<div class="col-lg-4 col-md-6 text-center <?= $fetch_product['category_id']; ?>">
+								<div class="single-product-item">
+									<div class="product-image">
+										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>">
+										<img width=200px height=200px src='../upload/<?= $fetch_product['pic_main']; ?>' alt="">
+										</a>
+										<h3><?= $fetch_product['product_name']; ?></h3>
+										<p class="product-price"><span><?= $fetch_product['color']; ?></span> <?= $fetch_product['price']; ?>$ </p>
+										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>" class="cart-btn">Select</a>					
+									</div>
+								</div>
+							</div>
+						<!-- </form> -->
+					<?php
+					}
+					}else{
+					echo '<p class="empty">no products found!</p>';
+					}
+					?>
 
 
-     
-	<!-- end breadcrumb section -->
-   
+				<!-- <div class="col-lg-4 col-md-6 text-center strawberry">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+						</div>
+						<h3>Strawberry</h3>
+						<p class="product-price"><span>Per Kg</span> 85$ </p>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div> -->
 
+				
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="pagination-wrap">
+						<ul>
+							<li><a href="#">Prev</a></li>
+							<li><a href="#">1</a></li>
+							<li><a class="active" href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">Next</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- end products -->
 <!-- __________________________________________________________ -->
 	<!-- logo carousel -->
