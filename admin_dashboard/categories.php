@@ -27,6 +27,11 @@ require("config.php");
                                     placeholder="New Category">
                                 <label for="floatingInput">Category Name</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="category_price" id="floatingInput"
+                                    placeholder="New Category">
+                                <label for="floatingInput">price</label>
+                            </div>
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Category Image</label>
                                 <input class="form-control bg-dark" type="file" name="file" id="formFile">
@@ -61,9 +66,10 @@ require("config.php");
                                         <tr>
                                             <th scope='col'>Category Id</th>
                                             <th scope='col'>Category Name</th>
+                                            <th scope='col'>Category price</th>
+                                            <th scope='col'>Image</th>
                                             <th scope='col'>Created At</th>
                                             <th scope='col'>Last Updated</th>
-                                            <th scope='col'>Image</th>
                                             <th scope='col'>IsDeleted</th>
                                             <th scope='col'>Edit</th>
                                         </tr>
@@ -77,9 +83,10 @@ require("config.php");
 
                                         $html .= "<tr><th scope='row'>$elemant[category_id]</th>";
                                         $html .= "<td>$elemant[category_name]</td>";
+                                        $html .= "<td>$elemant[category_price]</td>";
+                                        $html .= "<td><img src='$elemant[category_pic]' alt='$elemant[category_name]' width='100' height='100'></td>";                                            
                                         $html .= "<td>$elemant[category_created_at]</td>";
                                         $html .= "<td>$elemant[category_last_updated_at]</td>";
-                                        $html .= "<td><img src='$elemant[category_pic]' alt='$elemant[category_name]' width='100' height='100'></td>";                                            
                                         $html .= "<td>$elemant[category_is_deleted]</td>";
                                         $html .= "<td><form method='POST' action='./category_delete.php'><input type='hidden' name='category_id' value='$elemant[category_id]' /><button type='submit' value='delete'>Delete</button></form>
                                         <form action='./category_edit.php' method='POST'><input type='hidden' name='category_id' value='$elemant[category_id]' /><button type='submit' name = '$elemant[category_id]'>Edit</button></form><br>
