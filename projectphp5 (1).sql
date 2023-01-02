@@ -40,14 +40,13 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`category_id`, `category_name`, `category_created_at`, `category_last_updated_at`, `category_pic`, `category_is_deleted`) VALUES
-(1, 'Standard', '2023-01-02 00:15:36', NULL, './img/categories/Standard-YamahaFZ-07.png', 0),
-(2, 'Sport', '2023-01-02 00:19:38', '2023-01-01 22:24:00', './img/categories/Sport_kawasaki-ninja-zx.png', 1),
-(3, 'Touring', '2023-01-02 00:20:25', '2023-01-01 22:25:44', './img/categories/Touring_harley-davidson-road-king.png', 0),
-(4, 'Cruiser', '2023-01-02 00:29:47', '2023-01-01 22:31:16', './img/categories/Cruiser_Indian-Chief.png', 0),
-(5, 'Dual-Sport', '2023-01-02 00:35:15', NULL, './img/categories/Dual-Sport_ktm-1090-adventure-r.jpg', 0),
-(6, 'Scooter', '2023-01-02 00:39:27', NULL, './img/categories/Scooter_vespa.jpg', 0),
-(7, 'Electric', '2023-01-02 00:39:58', NULL, './img/categories/Electric_K-Choper-2.jpg', 0);
+INSERT INTO `categories` (`category_id`, `category_name`, `category_price`, `category_pic`, `category_created_at`, `category_last_updated_at`, `category_is_deleted`) VALUES
+(1, 'Standard', '1,999$ - 6,499$', './img/categories/Standard-YamahaFZ-07.png', '2023-01-02 00:15:36', NULL, 0),
+(2, 'Sport', '2,199$ - 8,499$', './img/categories/Sport_kawasaki-ninja-zx.png', '2023-01-02 00:19:38', '2023-01-01 22:24:00', 1),
+(4, 'Cruiser', '6,499$ - 18,799$', './img/categories/Cruiser_Indian-Chief.png', '2023-01-02 00:29:47', '2023-01-01 22:31:16', 0),
+(5, 'Dual-Sport', '3,399$ - 9,000$', './img/categories/Dual-Sport_ktm-1090-adventure-r.jpg', '2023-01-02 00:35:15', NULL, 0),
+(6, 'Scooter', '1,349$ - 7,499$', './img/categories/Scooter_vespa.jpg', '2023-01-02 00:39:27', NULL, 0),
+(7, 'Electric', '2,399$ - 6,499$', './img/categories/Electric_K-Choper-2.jpg', '2023-01-02 00:39:58', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -87,12 +86,12 @@ CREATE TABLE `order_details` (
 CREATE TABLE `products` (
   `product_id` int(10) NOT NULL,
   `product_name` varchar(255) NOT NULL,
+  `product_category` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `model_year` year(4) NOT NULL,
   `brand` varchar(255) NOT NULL,
   `color` varchar(255) NOT NULL,
   `price` int(10) NOT NULL,
-  `category_id` int(10) NOT NULL,
   `pic_main` varchar(255) NOT NULL,
   `pic_sub` varchar(255) NOT NULL,
   `rate` int(1) NOT NULL DEFAULT 5,
@@ -102,15 +101,43 @@ CREATE TABLE `products` (
   `product_create_at` datetime NOT NULL DEFAULT current_timestamp(),
   `product_last_update` datetime DEFAULT NULL,
   `product_is_deleted` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `description`, `model_year`, `brand`, `color`, `price`, `category_id`, `pic_main`, `pic_sub`, `rate`, `in_stock`, `is_discount`, `discount`, `product_create_at`, `product_last_update`, `product_is_deleted`) VALUES
-(1, 'Suzuki GSX-R1000', 'Introducing the latest Suzuki GSX-R1000: the most powerful, hardest-accelerating, cleanest-running GSX-R ever built. Compact Engine', 2001, 'Suzuki', 'Red', 15000, 2, '', '', 5, 0, 0, 0, '2023-01-02 01:11:12', NULL, 0),
-(2, 'suzuki gsx-r1000', 'Sports motorcycle', 2001, 'Suzuki', 'red', 15000, 2, '', '', 5, 10, 0, 0, '2023-01-02 01:13:03', NULL, 0);
+INSERT INTO `products` (`product_id`, `product_name`, `product_category`, `description`, `model_year`, `brand`, `color`, `price`, `pic_main`, `pic_sub`, `rate`, `in_stock`, `is_discount`, `discount`, `product_create_at`, `product_last_update`, `product_is_deleted`) VALUES
+(38, 'Aprilia', 1, '300cc', 2022, '', '', 2500, 'Aprilia-SXR-160-.png', '', 5, 25, 0, 10, '2023-01-02 21:03:27', NULL, 0),
+(39, 'suzuki gexer150', 2, '125cc', 2022, '', '', 2200, 'suzuki-gixxer.png', '', 5, 30, 0, 10, '2023-01-02 21:06:39', NULL, 0),
+(40, 'KTM 390', 2, '400cc', 2022, '', '', 4000, 'dual-sport-removebg-preview (1).png', '', 5, 25, 0, 10, '2023-01-02 21:07:45', NULL, 0),
+(41, 'cruiser', 2, '750cc', 2018, '', '', 8500, 'cruiser1.png', '', 5, 20, 0, 0, '2023-01-02 21:08:57', NULL, 0),
+(42, 'electric', 4, '30w', 2020, '', '', 3000, 'electric.png', '', 5, 25, 0, 0, '2023-01-02 21:11:30', NULL, 0),
+(43, 'cruiser 900cc', 2, '900cc', 2021, '', '', 8500, 'cruiser.png', '', 5, 25, 0, 0, '2023-01-02 21:13:17', NULL, 0),
+(44, 'standard_motorcycle', 5, '250cc', 2019, '', '', 2800, 'standard.png', '', 5, 25, 0, 10, '2023-01-02 21:14:43', NULL, 0),
+(45, 'sport_motorcycle', 5, '300cc', 2019, '', '', 5400, 'sport.png', '', 5, 30, 0, 10, '2023-01-02 21:16:02', NULL, 0),
+(50, 'kawasaki500', 1, '500cc', 2021, '', '', 5400, 'kawasaki500.png', '', 5, 25, 0, 10, '2023-01-02 21:55:00', NULL, 0),
+(51, 'scooterAdventure', 2, '300cc', 2022, '', '', 3000, 'scooterAdventure.png', '', 5, 25, 0, 10, '2023-01-02 21:56:31', NULL, 0),
+(52, 'hunda250', 2, '250cc', 2021, '', '', 2450, 'hunda250.png', '', 5, 25, 0, 0, '2023-01-02 21:57:40', NULL, 0),
+(53, 'kawasaki_Adventure599', 6, '599cc', 2022, '', '', 6000, 'kawasakiAdventure599.png', '', 5, 25, 0, 5, '2023-01-02 22:01:20', NULL, 0),
+(54, 'kawasaki499', 7, '499cc', 2020, '', '', 4500, 'kawasaki499.png', '', 5, 20, 0, 15, '2023-01-02 22:05:24', NULL, 0),
+(55, 'KLX', 7, '400cc', 2019, '', '', 4200, 'KLX.png', '', 5, 30, 0, 0, '2023-01-02 22:08:13', NULL, 0),
+(56, 'kawasaki550', 7, '550cc', 2020, '', '', 7400, 'kawasaki550.png', '', 5, 35, 0, 10, '2023-01-02 22:10:56', NULL, 0),
+(57, 'suzuki150', 1, '150cc', 2022, '', '', 1800, 'suzuki150.png', '', 5, 40, 0, 15, '2023-01-02 22:13:07', NULL, 0),
+(58, 'agusta', 6, '850cc', 2020, '', '', 7900, 'agusta.png', '', 5, 15, 0, 0, '2023-01-02 22:23:38', NULL, 0),
+(59, 'dWkty', 7, '700cc', 2016, '', '', 6900, 'dwkty.png', '', 5, 18, 0, 0, '2023-01-02 22:26:19', NULL, 0),
+(60, 'turbo', 7, '1000cc', 2015, '', '', 8600, 'turbo.png', '', 5, 13, 0, 0, '2023-01-02 22:29:08', NULL, 0),
+(61, 'ZXR', 4, '1000cc', 2014, '', '', 8900, 'ZXR.png', '', 5, 15, 0, 0, '2023-01-02 22:33:21', NULL, 0),
+(62, 'R6', 1, '750cc', 2018, '', '', 8000, 'R6.png', '', 5, 20, 0, 0, '2023-01-02 22:36:14', NULL, 0),
+(63, 'GT', 7, '1000cc', 2017, '', '', 8800, 'GT.png', '', 5, 20, 0, 0, '2023-01-02 22:43:58', NULL, 0),
+(64, 'ZLM', 2, '800cc', 2014, '', '', 7000, 'ZLM.png', '', 5, 20, 0, 0, '2023-01-02 23:17:16', NULL, 0),
+(65, 'Aprilia', 4, '450cc', 2021, '', '', 5000, 'aprilia.png', '', 5, 20, 0, 0, '2023-01-02 23:21:51', NULL, 0),
+(66, 'SuzukiDR', 5, '350cc', 2021, '', '', 3900, 'SuzukiDR.png', '', 5, 28, 0, 10, '2023-01-02 23:24:58', NULL, 0),
+(67, 'Ninga', 7, '600cc', 2018, '', '', 6300, 'Ninga.png', '', 5, 20, 0, 0, '2023-01-02 23:27:58', NULL, 0),
+(68, 'CBR', 4, '750cc', 2013, '', '', 6300, 'CBR.png', '', 5, 15, 0, 0, '2023-01-02 23:36:10', NULL, 0),
+(69, 'Ducati', 6, '500cc', 2020, '', '', 450, 'Ducati.png', '', 5, 14, 0, 0, '2023-01-02 23:41:08', NULL, 0),
+(70, 'yamaha_R3', 7, '599cc', 2021, '', '', 5400, 'yamaha_r3.png', '', 5, 20, 0, 0, '2023-01-02 23:45:27', NULL, 0),
+(71, '420R', 5, '850cc', 2019, '', '', 6700, '420R.png', '', 5, 18, 0, 0, '2023-01-02 23:50:08', NULL, 0);
 
 -- --------------------------------------------------------
 

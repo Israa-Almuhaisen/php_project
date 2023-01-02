@@ -39,22 +39,27 @@
           <h4 class="mb-4">ADD PRODUCT</h4>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
-                  placeholder="Password" name="product_name"> 
+                  placeholder="product_name" name="product_name"> 
               <label for="floatingPassword">product_name</label>
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
-                  placeholder="Password" name="description">
+                  placeholder="category_id_for_product" name="category_id_for_product"> 
+              <label for="floatingPassword">category_id_for_product</label>
+          </div>
+          <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingPassword"
+                  placeholder="description" name="description">
               <label for="floatingPassword">description</label>
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
-                  placeholder="Password" name="model_year">
+                  placeholder="model_year" name="model_year">
               <label for="floatingPassword">model_year</label>
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
-                  placeholder="Password" name="price">
+                  placeholder="price" name="price">
               <label for="floatingPassword">price</label>
           </div>
           <div class="form-floating mb-3">
@@ -63,12 +68,12 @@
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
-                  placeholder="Password" name="in_stock">
+                  placeholder="in_stock" name="in_stock">
               <label for="floatingPassword">in_stock</label>
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
-                  placeholder="Password" name="discount">
+                  placeholder="discount" name="discount">
               <label for="floatingPassword">discount</label><br>
               <button type="submit" class="btn btn-primary">Sign in</button>
           </div>
@@ -95,7 +100,7 @@
         }
     
         // insert products in database
-        $sql = "INSERT INTO products (product_name, description, model_year, price, pic_main, in_stock, discount) VALUES ('$_POST[product_name]','$_POST[description]','$_POST[model_year]','$_POST[price]','$filename', '$_POST[in_stock]', '$_POST[discount]' )";
+        $sql = "INSERT INTO products (product_name, product_category, description, model_year, price, pic_main, in_stock, discount) VALUES ('$_POST[product_name]', '$_POST[category_id_for_product]','$_POST[description]','$_POST[model_year]','$_POST[price]','$filename', '$_POST[in_stock]', '$_POST[discount]' )";
         $conn->query($sql);
         header("location: blank.php");
           echo $_POST["product_name"];
