@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $e_discount = $_POST['edit_discount'];
     $sql = "UPDATE products SET `product_name`='$e_name',`description`='$e_description',`model_year`='$e_model',`price`='$e_price',`pic_main`='$e_pic',
     `in_stock`='$e_stock',`discount`='$e_discount' WHERE product_id = $id";
-    $res = $conn->exec($sql);
+    $res = $conn->query($sql);
     
     if ($res){
         header("location:blank.php");

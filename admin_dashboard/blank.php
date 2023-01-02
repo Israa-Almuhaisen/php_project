@@ -44,7 +44,9 @@
 
         <!-- Sidebar Start -->
         <?php
-        include("./include/include_sidebar.php");
+        require_once("config.php");
+        session_start();
+        include("./includers/sidebar.php");
         ?>
         <!-- Sidebar End -->
 
@@ -67,7 +69,6 @@
                         <h3>This is blank page</h3>
                     </div> -->
                     <?php
-                    require_once("config.php");
 
                    // build a head of table
                     $html = "<div class='col-sm-12 col-xl-12'>
@@ -94,6 +95,7 @@
                                 $conn->query($sql); // execute query 
                                 $array = ($conn->query($sql));                 
                                     foreach($array as $ele){
+                                        if($ele['product_is_deleted'] == 0){
                                     
                                         $P_id=$ele['product_id'];
                                         $proname=$ele['product_name'];
@@ -111,9 +113,9 @@
                                 $html .= "<td><img width='100px';height='100px' src='../admin_dashboard/img/products/$pic'></td>";
                                 $html .= "<td>$sto</td>";
                                 $html .= "<td>$dis</td>";
-                                $html .= "<td><a href='delete_product.php?deleteid=$P_id'><button>delete</button></a><hr><a href='edit_product.php?editid=$P_id'><buttont>edite</a></button></a></td></tr>";
+                                $html .= "<td><a href='delete_product.php?deleteid=$P_id'><button>delete</button></a><hr><a href='edit_product.php?editid=$P_id'><buttont>edit</a></button></a></td></tr>";
 
-                            }
+                            } }
                                     $html .= 
                                 "</tbody>
                             </table>
