@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("../admin_dashboard/config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,11 +39,11 @@
 <body>
 	
 	<!--PreLoader-->
-    <div class="loader">
+    <!-- <div class="loader">
         <div class="loader-inner">
             <div class="circle"></div>
         </div>
-    </div>
+    </div> -->
     <!--PreLoader Ends-->
 	
 	<!-- header -->
@@ -131,33 +135,85 @@
 	<!-- end breadcrumb section -->
 
 	<!-- single product -->
+	<?php
+	// nnnn = product id sent in url
+	// $product_id = $_GET["nnnn"];
+	$product_id = 1;
+	$sql = "select * from products where product_id = $product_id";
+	$data= $conn->query($sql);
+	$product = mysqli_fetch_array($data, MYSQLI_ASSOC);
+	// print_r($product);
+	?>
 	<div class="single-product mt-150 mb-150">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-5">
 					<div class="single-product-img">
-						<img src="assets/img/products/product-img-5.jpg" alt="">
+					<?php 
+						$pic=$product["pic_main"];
+						$pic = trim($pic) ;
+						echo "<img style='width: 30em; height:22em' src='../upload/$pic' alt=''>";
+						?>
+					<!-- <img style="width: 30em; height:25em" src='../upload/$pic' alt=''> -->
 					</div>
 				</div>
 				<div class="col-md-7">
 					<div class="single-product-content">
-						<h3>Green apples have polyphenols</h3>
-						<p class="single-product-pricing"><span>Per Kg</span> $50</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
+						<h3>
+							<?php
+							echo $product["product_name"] ;
+							?>
+						</h3>
+						<p class="single-product-pricing"><span></span>
+						<?php
+							echo $product["price"] ;
+							echo " JOD" ;
+							?>
+						</p>
+						<p>
+						<?php
+							echo str_replace("—","<br>",$product["description"]);
+							?>
+						</p>
 						<div class="single-product-form">
-							<form action="index.html">
-								<input type="number" placeholder="0">
+							<form action="" method="POST">
+								<input type="number" name="qun" value="1" min="1" 
+								max="<?php
+								echo $product["in_stock"] ?>">
+								<button type="submit">
+							<p type="submit"><a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+								</button>
 							</form>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-							<p><strong>Categories: </strong>Fruits, Organic</p>
+							<?php
+							if ($_SERVER['REQUEST_METHOD']=="POST") {
+								
+								$added_product = [$product["product_id"],$_POST["qun"],$product["product_name"],$product["description"],$product["model_year"],$product["brand"],$product["price"],$product["category_id"],$product["pic_main"],$product["rate"],$product["in_stock"],$product["is_discount"],$product["discount"]];
+								if (! isset($_SESSION["added_products"])){
+								$_SESSION["added_products"] = [];
+								}
+								array_push($_SESSION["added_products"],$added_product);
+								print_r($_SESSION["added_products"]);
+							}
+							?>
+							<p><strong>Categories: </strong>	
+						
+							<?php
+							$cat_id = $product["category_id"];
+							$sql = "select * from categories where category_id = $cat_id";
+							$cat= $conn->query($sql);
+							$cat = mysqli_fetch_array($cat, MYSQLI_ASSOC);
+							echo $cat["category_name"];
+							$cat_id=$cat["category_id"]
+							?>							
+							</p>
 						</div>
-						<h4>Share:</h4>
+						<!-- <h4>Share:</h4>
 						<ul class="product-share">
 							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href=""><i class="fab fa-twitter"></i></a></li>
 							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
 							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 			</div>
@@ -172,12 +228,43 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
 						<h3><span class="orange-text">Related</span> Products</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p> -->
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center">
+			<?php
+							// session_start();
+
+							include("../admin_dashboard/config.php");
+
+							$sql = "select * from products where category_id=$cat_id";
+							$data= $conn->query($sql);
+				foreach($data as $ele){
+					if ($ele["is_discount"]){
+						echo '<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+						<div class="product-image">';
+						$pic=$ele["pic_main"];
+						$id=$ele["product_id"];
+						// echo $pic;
+						echo "<a href='single-product.php?product_id=$id'><img src='../admin_dashboard/img/products/$pic' alt=''></a>";
+						echo "</div>";
+						$name = $ele['product_name'];
+						echo "<h3>$name</h3>";
+						$old_price = $ele['price'];
+						$new_price =$old_price - ($ele['discount'] * $old_price)/100;
+						echo "<h3> <span class='product-price'><del>$old_price </del></span><span class='product-price'>$$new_price</span></h3>";
+						echo "<a href='add_to_cart.php?productid=$id' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a></div></div>";
+						// $url = getcwd();
+						// $url = (parse_url($url, PHP_URL_FRAGMENT));
+						// $url =str_replace('C:\xampp\htdocs',"localhost",$url);
+						// echo $url;
+						// $_SESSION["current_url"]= $url;
+					}
+				}
+				?>
+				<!-- <div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
@@ -186,8 +273,8 @@
 						<p class="product-price"><span>Per Kg</span> 85$ </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
+				</div> -->
+				<!-- <div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
@@ -205,7 +292,7 @@
 						<h3>Lemon</h3>
 						<p class="product-price"><span>Per Kg</span> 35$ </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
