@@ -58,23 +58,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     else {
         echo "invalid <br>";
     }
-    if (!($val_repass)) {
-        echo "repass <br>";
-    }
-    if (!($val_pass)) {
-        echo "pass <br>";
-    }
+    // if (!($val_repass)) {
+    //     echo "repass <br>";
+    // }
+    // if (!($val_pass)) {
+    //     echo "pass <br>";
+    // }
    
    
-    if (!($val_phone)) {
-        echo "phone <br>";
-    }
-    if (!($val_email)) {
-        echo "mail <br>";
-    }
-    if (!($val_name)) {
-        echo "name <br>";
-    }
+    // if (!($val_phone)) {
+    //     echo "phone <br>";
+    // }
+    // if (!($val_email)) {
+    //     echo "mail <br>";
+    // }
+    // if (!($val_name)) {
+    //     echo "name <br>";
+    // }
    }
 ?>
 
