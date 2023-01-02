@@ -43,7 +43,7 @@
 
         <!-- Sidebar Start -->
         <?php 
-        // include('./include/include_sidebar.php');
+        include('./include/include_sidebar.php');
         ?>
         <!-- Sidebar End -->
 
@@ -52,8 +52,6 @@
         <div class="content">
             <!-- Navbar Start -->
             <?php 
-            // include('./include/include_navbar.php');
+            include('./include/include_navbar.php');
             ?>
             <!-- Navbar End -->
-            </body>
- </html>
