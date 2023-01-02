@@ -1933,8 +1933,8 @@ span.comment-date {
 
 .cart-banner .image-column .price-box .inner-price {
   position: relative;
-  width: 94px;
-  height: 94px;
+  /* width: 94px;
+  height: 94px; */
   margin: 0 auto;
   margin-top: 8px;
   text-align: center;
@@ -1949,6 +1949,7 @@ span.comment-date {
   display: inline-block;
   line-height: 18px;
   font-weight: 400;
+  
 }
 
 .cart-banner .image-column .price-box .inner-price .price strong {

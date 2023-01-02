@@ -108,7 +108,7 @@
                                 $html .= "<td>$desc</td>";
                                 $html .= "<td>$mod</td>";
                                 $html .= "<td>$pri</td>";
-                                $html .= "<td><img src='../admin_dashboard/img/products/$pic'></td>";
+                                $html .= "<td><img width='100px';height='100px' src='../admin_dashboard/img/products/$pic'></td>";
                                 $html .= "<td>$sto</td>";
                                 $html .= "<td>$dis</td>";
                                 $html .= "<td><a href='delete_product.php?deleteid=$P_id'><button>delete</button></a><hr><a href='edit_product.php?editid=$P_id'><buttont>edite</a></button></a></td></tr>";
