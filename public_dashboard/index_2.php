@@ -287,13 +287,14 @@ include("../includs/navbar.php")
 							$category_pri=$ele['category_price'];
 							$category .= "<h3>$category_name</h3>";
 							$category .= "<p class='product-price'> <span>$category_pri</span> </p>
-							</div></div>";
+							</div></div></div>";
 							echo $category;
 						}
 							?> 
 							
 			</div>
-		</div>
+			</div>
+
 	<!-- end Categories section -->
 
 	<!-- cart banner section -->

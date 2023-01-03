@@ -100,7 +100,7 @@
                                     
                                         $P_id=$ele['product_id'];
                                         $proname=$ele['product_name'];
-                                        $procategory=$ele['product_category'];
+                                        $procategory=$ele['category_id'];
                                         $desc=$ele['description'];
                                         $mod=$ele['model_year'];
                                         $pri=$ele['price'];

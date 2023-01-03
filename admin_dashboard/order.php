@@ -67,7 +67,7 @@ include ("./includers/navbar.php");
                                         $html = "";
                                         // foreach($data as $row) {
                                             $user_with_order = "SELECT * 
-                                                                FROM orders
+                                            FROM orders
                                                                 INNER JOIN users WHERE orders.user_id = users.user_id";
                                             $new_data = $conn->query($user_with_order);
                                             foreach ($new_data as $user){                                         
