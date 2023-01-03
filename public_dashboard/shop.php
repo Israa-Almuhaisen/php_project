@@ -1,5 +1,5 @@
 <?php 
-require("config1.php");
+require("../admin_dashboard/config.php");
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +96,7 @@ require("config1.php");
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
+						<p>All Products</p>
 						<h1>Shop</h1>
 					</div>
 				</div>
@@ -115,17 +115,13 @@ require("config1.php");
                         <ul>
 									<li class="active" data-filter="*">All</li>
 								<?php
-								$select_categories = $conn->prepare("SELECT * FROM `categories` WHERE category_is_deleted=0"); 
-								$select_categories->execute();
-								if($select_categories->rowCount() > 0){
-								while($fetch_category = $select_categories->fetch(PDO::FETCH_ASSOC)){
+								$sql = "SELECT * FROM categories WHERE category_is_deleted=0";
+								$select_categories= $conn->query($sql);
+								foreach($select_categories as $fetch_category){
 								?>									
 									
 									<li data-filter=".<?= $fetch_category['category_id']; ?>"><?= $fetch_category['category_name']; ?></li>
 								<?php
-								}
-								}else{
-								echo '<p class="empty">no products found!</p>';
 								}
 								?>
                         </ul>
@@ -134,14 +130,12 @@ require("config1.php");
             </div>
 
 			<div class="row product-lists">
-			<?php
-					$select_products = $conn->prepare("SELECT * FROM `products`"); 
-					$select_products->execute();
-					if($select_products->rowCount() > 0){
-					while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
+			<?php					
+					$sql = "SELECT * FROM `products`";
+					$select_products= $conn->query($sql);
+					foreach($select_products as $fetch_product){
 					?>
 
-						<!-- <form action="" method="post" class="row product-lists box"> -->
 							<div class="col-lg-4 col-md-6 text-center <?= $fetch_product['category_id']; ?>">
 								<div class="single-product-item">
 									<div class="product-image">
@@ -154,26 +148,9 @@ require("config1.php");
 									</div>
 								</div>
 							</div>
-						<!-- </form> -->
 					<?php
 					}
-					}else{
-					echo '<p class="empty">no products found!</p>';
-					}
 					?>
-
-
-				<!-- <div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div> -->
-
 				
 			</div>
 
@@ -182,8 +159,8 @@ require("config1.php");
 					<div class="pagination-wrap">
 						<ul>
 							<li><a href="#">Prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
+							<li><a class="active" href="#">1</a></li>
+							<li><a href="#">2</a></li>
 							<li><a href="#">3</a></li>
 							<li><a href="#">Next</a></li>
 						</ul>
