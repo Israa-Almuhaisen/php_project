@@ -54,44 +54,14 @@ session_start();
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="index.html">
+							<a href="index_2.php">
 								<img src="../public_dashboard/assets/img/logomotor (2).png" alt="">
 							</a>
 						</div>
 						<!-- logo -->
 
 						<!-- menu start -->
-						<nav class="main-menu">
-							<ul>
-								<li class="current-list-item"><a href="#">Home</a>
-									<ul class="sub-menu">
-										<li><a href="index.html">Static Home</a></li>
-										<li><a href="index_2.html">Slider Home</a></li>
-									</ul>
-								</li>
-								<li><a href="about.html">About</a></li>
-								
-								
-								<li><a href="contact.html">Contact</a></li>
-								<li><a href="shop.html">Shop</a>
-									<ul class="sub-menu">
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="single-product.html">Single Product</a></li>
-										<li><a href="cart.html">Cart</a></li>
-									</ul>
-								</li>
-								<li>
-									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-									</div>
-								</li>
-							</ul>
-						</nav>
-						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-						<div class="mobile-menu"></div>
-						<!-- menu end -->
+						<?php include("../includs/navbar.php") ?> 
 					</div>
 				</div>
 			</div>
@@ -162,10 +132,15 @@ session_start();
 								$totalprice = 0;
 								// i = number of products in cart
 								// $i = 0;
+								// echo "<pre>";
+								// print_r($_SESSION["added_products"]);
+								// echo "</pre>";
+								if (isset( $_SESSION["added_products"])){
+								if ($_SESSION["added_products"]){
 								foreach ($_SESSION["added_products"] as $key => $ele){
-									$sql = "select * from products where product_id = $ele[0]";
-									$product= $conn->query($sql);
-									$product = mysqli_fetch_array($product, MYSQLI_ASSOC);
+									// $sql = "select * from products where product_id = $ele[0]";
+									// $product= $conn->query($sql);
+									// $product = mysqli_fetch_array($product, MYSQLI_ASSOC);
 									// echo "product";
 									// echo "<pre>";
 									// print_r($product);
@@ -173,11 +148,14 @@ session_start();
 									$html ='';
 									$html .= "<tr class='table-body-row'>";
 									$html .= "<td class='product-remove'><a href='deletepoduct.php?index=$key'><i class='far fa-window-close'></i></a></td>";
-									$pic=$product["pic_main"];
+									$pic=$ele[8];
 									$html .= "<td class='product-image'><img src='../upload/$pic' alt=''></td>";
-									$name=$product["product_name"];
+									$name=$ele[2];
 									$html .= "<td class='product-name'>$name</td>";
-									$price=$product["price"];
+									if ($ele[11]){
+									$price=$ele[6]-(($ele[6]*$ele[12])/100);}else {
+										$price=$ele[6];
+									}
 									$html .= "<td class='product-price'>$price</td>";
 									$qun = $ele[1];
 									$html .= "<td class='product-quantity'><form method='post'><input type='number' value='$qun' name ='new_qun' min='1'></td>";
@@ -188,19 +166,23 @@ session_start();
 									$html .= "</tr>";
 									$totalprice += $total;
 									echo $html;
-									// echo $key;
+									// echo $price;
 									// $i++;
-								}
+
+								}}}
 								if ($_SERVER['REQUEST_METHOD']=="POST") {
 									// echo $_POST["new_qun"];
 									// echo "<br>";
 									// echo $_POST["arr_index"];
 									// echo $_POST[""];
 									// echo "rwefasdasd";
+									echo $_POST["new_qun"];
+									echo $_POST["arr_index"];
 									$_POST["new_qun"] = (int) $_POST["new_qun"];
 									$_SESSION["added_products"][$_POST["arr_index"]][1] = $_POST["new_qun"];
 									// echo $_SESSION["added_products"][$_POST["arr_index"]][1];
-									header("location:cart.php");
+									// header("location:cart.php");
+									echo "<meta http-equiv='refresh' content='0'>";
 									// session_unset();
 								}
 								// 	$added_product["product_id"][] = [$product["product_id"],$_POST["qun"]];
@@ -269,7 +251,7 @@ session_start();
 						</table>
 						<div class="cart-buttons">
 							<!-- <a href="updateproduct.php" class="boxed-btn">Update Cart</a> -->
-							<a href="checkout.html" class="boxed-btn black">Check Out</a>
+							<a href="checkout.php" class="boxed-btn black">Check Out</a>
 						</div>
 					</div>
 							</form>
