@@ -9,9 +9,10 @@ if(isset($_SESSION['user_id'])){
    $user_id = '';
 };
 
-if(isset($_POST['submit'])){
+// if(isset($_POST['submit']))
+if(($_SERVER["REQUEST_METHOD"] === "POST")){
 
-   $email = $_POST['email'];
+   $email = $_POST['mail'];
    $email =  filter_var($email, FILTER_SANITIZE_STRING);
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
@@ -20,13 +21,12 @@ if(isset($_POST['submit'])){
    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
    $select_user->execute([$email, $pass]);
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
-   
-   if($select_user->rowCount() > 0){
+   if($row->rowCount() > 0){
       $_SESSION['user_id'] = $row['user_id'];
       // for home page
-      header('location:index2.html');
+      header('location:./public_dashboard/index_2.php');
    }else{
-      echo('incorrect username or password!');
+      echo('<h1>incorrect username or password!</h1>');
    }
 
 }
@@ -45,28 +45,29 @@ if(isset($_POST['submit'])){
     <script src="https://kit.fontawesome.com/387212a066.js" crossorigin="anonymous"></script>
     <title>login</title>
     <link rel="stylesheet" href="style1.css">
+    
 
 </head>
-<body>
-     
+<body style="background-image: url('./handsome-motorbiker-with-helmet-hands-motorcycle.jpg');
+background-size: cover;">
      
       <div class="wel">
      <h1> Motorbike </h1>
      <br>
      <form action="" method="post">
       
-        <b><label class="em" for="email">Emal:</label></b>
+        <b><label class="em" for="email">Email:</label></b>
         <br>
-    <input type="email" id="mail" class="form-control" >
+    <input type="email" name="mail" class="form-control" >
      
     <br>
       
       <b><label class="ps" for="password">Password:</label></b>
     <br>
-    <input type="password" id="pass" class="form-control">
+    <input type="password" name="pass" class="form-control">
      
      <br>
-      <a href="" class="fp">Forget Password</a>
+      <!-- <a href="" class="fp">Forget Password</a> -->
       <br>
       <br>
       <a href="userregister.php" class="acc">Need an account ?  Sign up</a>
@@ -84,3 +85,7 @@ if(isset($_POST['submit'])){
     
 </body>
 </html>
+
+<?php
+
+?>

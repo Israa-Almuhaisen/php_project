@@ -1,8 +1,8 @@
 <?php
 
-include 'conect.php';
+include './conect.php';
 
-session_start();
+// session_start();
 
 // if(isset($_SESSION['user_id'])){
 //    $user_id = $_SESSION['user_id'];
@@ -52,8 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $val_repass = ($_POST["user_pass"] === $_POST["user_repass"]);
     if (($val_repass && $val_pass && $val_phone && $val_email && $val_name)) {
         require_once('conect.php');
-        $sql = "INSERT INTO users (name, email, phone,  password) VALUES ('$_POST[user_name]','$_POST[user_email]','$_POST[user_phone]','$_POST[user_birth]','$_POST[user_pass]')";
+        $sql = "INSERT INTO users (user_name,phone,email,password) VALUES ('$_POST[user_name]','$_POST[user_phone]','$_POST[user_email]','$_POST[user_pass]')";
         $conn->query($sql);
+        header("location:loginuser.php");
     }
     else {
         echo "invalid <br>";
@@ -90,7 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     <title>register</title>
     <link rel="stylesheet" href="style2.css">
 </head>
-<body>
+<body style="background-image: url('./men-riding-motorcycle-winter-day.jpg');
+background-size: cover;">
+
     <img class="logo" src="../img/logoblack.png">
     
     <div class="cont">
@@ -102,31 +105,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     <!-- <form id="form" action="post" > -->
 
         <div class="input-field">
-            <input type="text" placeholder="Enter your name" id="fname" required>
+            <input type="text" name="user_name" placeholder="Enter your name" required>
             <span id="fnameerror" class="text-danger font-weight-bold"></span>
             <i class="fa-solid fa-user"></i>
         </div>
 
         <div class="input-field">
-            <input type="number" placeholder="Enter your number"  id="num" required>
+            <input type="number" name="user_phone" placeholder="Enter your number"  id="num" required>
             <span id="numerror" class="text-danger font-weight-bold"></span>
             <i class="fa-solid fa-mobile-screen"></i>
         </div>
 
         <div class="input-field">
-            <input type="email" placeholder="Enter your email"  id="email" required>
+            <input type="email" name="user_email" placeholder="Enter your email"  id="email" required>
             <span id="mail" class="text-danger font-weight-bold"></span>
             <i class="fa-regular fa-envelope"></i>
         </div>
 
 
         <div class="input-field">
-            <input type="password" class="password" placeholder="Create a password"  id="password" required>
+            <input type="password" name="user_pass" class="password" placeholder="Create a password"  id="password" required>
             <span id="pass" class="text-danger font-weight-bold"></span>
             <i class="fa-solid fa-lock"></i>
         </div>
         <div class="input-field">
-            <input type="password" class="password" placeholder="Confirm a password" id="conPass"required>
+            <input type="password" name="user_repass" class="password" placeholder="Confirm a password" id="conPass"required>
             <span id="conpass" class="text-danger font-weight-bold"></span>
             <i class="fa-solid fa-lock"></i>
            
@@ -151,4 +154,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     <script src="../registration/registr.js"></script>
 </body>
 </html>
+
 

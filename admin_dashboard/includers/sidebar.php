@@ -17,8 +17,8 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="http://localhost/php_project-1/admin_dashboard/adminprofile.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="http://localhost/php_project-1/admin_dashboard/blank.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Products</a>
+                    <a href="../admin_dashboard/adminprofile.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="../admin_dashboard/blank.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Products</a>
                     <a href="./categories.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Category</a>
                     <a href="./order.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Orders</a>
                     <a href="./users.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Users</a>
