@@ -53,45 +53,13 @@ session_start();
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="index.html">
+							<a href="index_2.php">
 								<img src="../public_dashboard/assets/img/logomotor (2).png" alt="">
 							</a>
 						</div>
 						<!-- logo -->
-
-						<!-- menu start -->
-						<nav class="main-menu">
-							<ul>
-								<li class="current-list-item"><a href="#">Home</a>
-									<ul class="sub-menu">
-										<li><a href="index.html">Static Home</a></li>
-										<li><a href="index_2.html">Slider Home</a></li>
-									</ul>
-								</li>
-								<li><a href="about.html">About</a></li>
-								
-								
-								<li><a href="contact.html">Contact</a></li>
-								<li><a href="shop.html">Shop</a>
-									<ul class="sub-menu">
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="single-product.html">Single Product</a></li>
-										<li><a href="cart.html">Cart</a></li>
-									</ul>
-								</li>
-								<li><a href="../admin_dashboard/signin.html">login</a></li>
-								<li>
-									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-									</div>
-								</li>
-							</ul>
-						</nav>
-						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-						<div class="mobile-menu"></div>
-						<!-- menu end -->
+<?php
+						include("../includs/navbar.php"); ?>
 					</div>
 				</div>
 			</div>
@@ -158,8 +126,8 @@ session_start();
 
 						        		<!-- <p><input name="user_name" type="text" placeholder="Name"></p> -->
 						        		<!-- <p><input name="user_email" type="email" placeholder="Email"></p> -->
-						        		<p><input name="user_address" type="text" placeholder="Address"></p>
-						        		<p><input name="user_phone" type="tel" placeholder="Phone"></p>
+						        		<p><input name="user_address" type="text" placeholder="Address" required></p>
+						        		<p><input name="user_phone" type="tel" placeholder="Phone" required></p>
 						        		<!-- <p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p> -->
 						        	
 						        </div>
@@ -220,6 +188,7 @@ session_start();
 								</tr>
 								<?php
 								$total = 0;
+								// print_r($_SESSION["added_products"]);
 								if(isset($_SESSION["added_products"]) ){
 								
 								foreach ($_SESSION["added_products"] as $key => $ele){
@@ -269,7 +238,7 @@ session_start();
 					
 					<?php
 
-					if ($_SERVER['REQUEST_METHOD']=="POST") {
+					if (($_SERVER['REQUEST_METHOD']=="POST") && isset($_SESSION[`user`]) && isset($_SESSION[`added_products`]) ) {
 						// $id = $_SESSION[`user_id`] ;
 						$id = 1 ;
 						$ADDRESS=$_POST["user_address"];
@@ -284,7 +253,7 @@ session_start();
 							$order_id = mysqli_fetch_array($order_id, MYSQLI_ASSOC);
 							$order_id = $order_id["order_id"];
 
-						// print_r($_POST);
+						// print_r($_POST);	
 						if(isset($_SESSION["added_products"]) ){
 						foreach($_SESSION["added_products"] as $ele){
 							$total = $ele[1]*$ele[6];
@@ -294,6 +263,7 @@ session_start();
 						}
 						echo "order sent successfully";
 						unset($_SESSION['added_products']);
+						header("location:shop.php");
 					}}
 					?>
 				</div>

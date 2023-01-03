@@ -55,30 +55,30 @@ include ("./includers/navbar.php");
                                             <th scope="col">phone</th>
                                             <th scope="col">address</th>
                                             <th scope="col">Order_at</th>
-                                            <th scope="col">Order_table</th>
+                                            <th scope="col">order_total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         include ("./config.php");
-                                        $sql = "SELECT * FROM orders";
-                                        $data= $conn->query($sql);
+                                        // $sql = "SELECT * FROM orders";
+                                        // $data= $conn->query($sql);
                                         $i = 1;
                                         $html = "";
-                                        foreach($data as $row) {
+                                        // foreach($data as $row) {
                                             $user_with_order = "SELECT * 
-                                                                FROM orders
+                                            FROM orders
                                                                 INNER JOIN users WHERE orders.user_id = users.user_id";
                                             $new_data = $conn->query($user_with_order);
                                             foreach ($new_data as $user){                                         
                                             $e_id = $user['user_name'];
                                             // $e_name = $row['user_name'];
-                                            $e_phone = $row['order_phone'];
+                                            $e_phone = $user['order_phone'];
                                             // $e_email = $row['email'];
                                             // $e_password = $row['password'];
-                                            $e_address = $row['address'];
-                                            $ordered_at = $row['ordered_at'];
-                                            $order_total = $row['order_total'];
+                                            $e_address = $user['address'];
+                                            $ordered_at = $user['ordered_at'];
+                                            $order_total = $user['order_total'];
                                             // if($e_is_admin == 1){ $x = 'Yes';} else { $x = 'No';}
                                             $html .= "<tr><th scope='row'>$i</th>";
                                             $html .= "<td>$e_id</td>";
@@ -87,9 +87,10 @@ include ("./includers/navbar.php");
                                             $html .= "<td>$ordered_at</td>";
                                             $html .= "<td>$order_total</td>";
                                             // $html .= "<td>" . $x ."</td>";
-                                            $html .= "<td><a href='delete_user.php?deleteid=$e_id'><button>delete</button></a></td></tr>";
+                                            // $html .= "<td><a href='delete_user.php?deleteid=$e_id'><button>delete</button></a></td>";
+                                            $html .= "</tr>";
                                             $i++;
-                                        }}
+                                        }
                                         echo $html;
                                         ?>
                                     </tbody>
