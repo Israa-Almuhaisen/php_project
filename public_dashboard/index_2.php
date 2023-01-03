@@ -182,7 +182,7 @@
 					<div class="section-title">	
 						<h3><span class="orange-text">Our</span> Categories</h3>
 						<p>No road is too long when you have good company</p>
-						<h3><span class="orange-text">On</span> Sale </h3>
+						<!-- <h3><span class="orange-text">On</span> Sale </h3> -->
 						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p> -->
 					</div>
 				</div>
@@ -215,7 +215,8 @@
 					}
 				}
 				?>
-				<!-- <div class="col-lg-4 col-md-6 text-center">
+
+				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/standard.png" alt=""></a>
@@ -225,26 +226,26 @@
 						<p class="product-price"> <span>1,999$ - 6,499$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div> -->
+				</div>
 				<div class="col-lg-4 col-md-6 text-center">
-					<!-- <div class="single-product-item">
+					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/sport.png" alt=""></a>
 						</div>
 						<h3>Sport</h3>
 						<p class="product-price"> <span>2,199$ - 8,499$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div> -->
+					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<!-- <div class="single-product-item">
+					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/cruiser1.png" alt=""></a>
 						</div>
 						<h3>Cruiser</h3>
 						<p class="product-price"> <span>6,499$ - 18,799$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div> -->
+					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
@@ -289,7 +290,7 @@
 										<div class='product-image'>";
 
 							$category_pic=$ele['category_pic'];
-							echo $category_pic;
+							// echo $category_pic;
 							$category_name=$ele['category_name'];
 							$category_pri=$ele['category_price'];
 							

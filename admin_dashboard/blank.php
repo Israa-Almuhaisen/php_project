@@ -47,6 +47,7 @@
         require_once("config.php");
         session_start();
         include("./includers/sidebar.php");
+        
         ?>
         <!-- Sidebar End -->
 
