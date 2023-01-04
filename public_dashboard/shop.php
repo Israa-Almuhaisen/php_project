@@ -154,7 +154,7 @@ require("../admin_dashboard/config.php");
 				
 			</div>
 
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="pagination-wrap">
 						<ul>
@@ -166,7 +166,7 @@ require("../admin_dashboard/config.php");
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<!-- end products -->
