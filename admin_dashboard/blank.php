@@ -78,7 +78,7 @@
                                 <thead>
                                     <tr>
                                         <th scope='col'>product_name</th>
-                                        <th scope='col'>product_category</th>
+                                        <th scope='col'>category_id</th>
                                         <th scope='col'>description</th>
                                         <th scope='col'>model_year</th>
                                         <th scope='col'>price</th>
@@ -100,7 +100,7 @@
                                     
                                         $P_id=$ele['product_id'];
                                         $proname=$ele['product_name'];
-                                        $procategory=$ele['product_category'];
+                                        $procategory=$ele['category_id'];
                                         $desc=$ele['description'];
                                         $mod=$ele['model_year'];
                                         $pri=$ele['price'];
@@ -113,7 +113,7 @@
                                 $html .= "<td>$desc</td>";
                                 $html .= "<td>$mod</td>";
                                 $html .= "<td>$pri</td>";
-                                $html .= "<td><img width='100px';height='100px' src='../admin_dashboard/img/products/$pic'></td>";
+                                $html .= "<td><img width='100px' height='100px' src='../admin_dashboard/img/products/$pic'></td>";
                                 $html .= "<td>$sto</td>";
                                 $html .= "<td>$dis</td>";
                                 $html .= "<td><a href='delete_product.php?deleteid=$P_id'><button>delete</button></a><hr><a href='edit_product.php?editid=$P_id'><buttont>edit</a></button></a></td></tr>";
@@ -131,6 +131,7 @@
 //     echo $elem["pic_main"];
 // }
                     ?>
+                    <!-- <img src="../" > -->
                     
 
 

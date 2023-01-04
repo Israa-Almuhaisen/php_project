@@ -140,11 +140,11 @@ require("../admin_dashboard/config.php");
 								<div class="single-product-item">
 									<div class="product-image">
 										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>">
-										<img width=200px height=200px src='../upload/<?= $fetch_product['pic_main']; ?>' alt="">
+										<img width=200px height=200px src='../images/product/<?= $fetch_product['pic_main']; ?>' alt="">
 										</a>
 										<h3><?= $fetch_product['product_name']; ?></h3>
-										<p class="product-price"><span><?= $fetch_product['color']; ?></span> <?= $fetch_product['price']; ?>$ </p>
-										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>" class="cart-btn">Select</a>					
+										<span STYLE="font-size:20pt"><?= $fetch_product['price']; ?></span> <SPAN STYLE="font-size:17pt">$</SPAN></br></br>
+										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>" class="cart-btn"> <SPAN STYLE="font-size:16pt">Select</SPAN> </a>					
 									</div>
 								</div>
 							</div>
