@@ -144,7 +144,7 @@ require("../admin_dashboard/config.php");
 										</a>
 										<h3><?= $fetch_product['product_name']; ?></h3>
 										<span STYLE="font-size:20pt"><?= $fetch_product['price']; ?></span> <SPAN STYLE="font-size:17pt">$</SPAN></br></br>
-										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>" class="cart-btn"> <SPAN STYLE="font-size:16pt">Select</SPAN> </a>					
+										<a href="add_to_cart.php?pid=<?= $fetch_product['product_id']; ?>" class="cart-btn"> <SPAN STYLE="font-size:16pt">Add to Cart</SPAN> </a>					
 									</div>
 								</div>
 							</div>

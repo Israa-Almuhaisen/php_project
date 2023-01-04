@@ -297,27 +297,21 @@
 							</div>";
 							$category .= "<h3>$category_name</h3>";
 							$category .= "<p class='product-price'> <span>$category_pri</span> </p>
-<<<<<<< HEAD
 							<a href='cart.html' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a>
 						</div>
 					</div>
-				</div>";
+				</div>;
 					echo $category;
-=======
 							</div></div></div>";
 							echo $category;
->>>>>>> ea21cf510365a223f307db0dd6f3021be6563ebb
 						}
 							?> -->
 							
 			</div>
-<<<<<<< HEAD
 		</div>
 	</div>
-=======
 			</div>
 
->>>>>>> ea21cf510365a223f307db0dd6f3021be6563ebb
 	<!-- end Categories section -->
 
 	<!-- cart banner section -->
