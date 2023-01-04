@@ -300,18 +300,14 @@
 							<a href='cart.html' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a>
 						</div>
 					</div>
-				</div>;
+				</div>";
 					echo $category;
-							</div></div></div>";
-							echo $category;
 						}
 							?> -->
 							
 			</div>
 		</div>
 	</div>
-			</div>
-
 	<!-- end Categories section -->
 
 	<!-- cart banner section -->
