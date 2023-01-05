@@ -277,7 +277,7 @@ include("../includs/navbar.php")
                                 $conn->query($sql); // execute query 
                                 $array = ($conn->query($sql));                 
                             
-							foreach($array as$ele){
+							foreach($array as $ele){
 							$category = "<div class='col-lg-4 col-md-6 text-center'><div class='single-product-item'><div class='product-image'>";
 							$category_pic=$ele['category_pic'];
 							$category .= "<a href='single-product.html'><img src='$category_pic' alt=''></a>
