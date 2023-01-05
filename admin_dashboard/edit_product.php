@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                   placeholder="Password" name="edit_product_category"  value=<?php
             echo $result["category_id"];
             ?>>
-              <label for="floatingPassword">product_category</label>
+              <label for="floatingPassword">category_id</label>
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"

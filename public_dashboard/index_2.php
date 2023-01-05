@@ -1,10 +1,11 @@
 <?php
-session_start();
-include("../admin_dashboard/config.php");
-$sql = "select * from products";
-$data= $conn->query($sql);
-// print_r($data) ;
-?>
+				session_start();
+
+				include("../admin_dashboard/config.php");
+				$sql = "select * from products";
+				$data= $conn->query($sql);
+				// print_r($data) ;
+				?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@ $data= $conn->query($sql);
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>MotoRbike</title>
+	<title>Fruitkha - Slider Version</title>
 
     <script src="https://kit.fontawesome.com/18b0a154a3.js" crossorigin="anonymous"></script>
 
@@ -49,11 +50,11 @@ $data= $conn->query($sql);
 <body>
 	
 	<!--PreLoader-->
-    <!-- <div class="loader">
+    <div class="loader">
         <div class="loader-inner">
             <div class="circle"></div>
         </div>
-    </div> -->
+    </div>
     <!--PreLoader Ends-->
 	
 	<!-- header -->
@@ -70,9 +71,43 @@ $data= $conn->query($sql);
 						</div>
 						<!-- logo -->
 
-<?php
-include("../includs/navbar.php")
-?>
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li class="current-list-item"><a href="#">Home</a>
+									<ul class="sub-menu">
+										<li><a href="index_2.php">Static Home</a></li>
+										<li><a href="index_2.php">Slider Home</a></li>
+									</ul>
+								</li>
+								<li><a href="about.php">About</a></li>
+							
+								
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="shop.php">Shop</a>
+									<ul class="sub-menu">
+										<li><a href="shop.php">Standard</a></li>
+										<li><a href="shop.php">Sport</a></li>
+										<li><a href="shop.php">Cruiser</a></li>
+										<li><a href="shop.php">Dual-Sport</a></li>
+										<li><a href="shop.php">Scooter</a></li>
+										<li><a href="shop.php">Electric</a></li>
+									</ul>
+								</li>
+								<li><a href="../loginuser.php">login</a></li>
+							
+								<li><a href="">register</a></li>
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart fa-2x"></i></a>
+										<!-- <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a> -->
+									</div>
+								</li>
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
 					</div>
 				</div>
 			</div>
@@ -92,7 +127,7 @@ include("../includs/navbar.php")
 							
 								<h1>Own your dream Motorcycle</h1>
 								<div class="hero-btns">
-									<a href="shop.php" class="boxed-btn">shop now</a>
+									<a href="shop.html" class="boxed-btn">Shop Now</a>
 									
 								</div>
 							</div>
@@ -111,8 +146,8 @@ include("../includs/navbar.php")
 								
 								<h1>Two wheels, endless fun</h1>
 								<div class="hero-btns">
-									<a href="shop.php" class="boxed-btn">Visit Shop</a>
-									<a href="contact.php" class="bordered-btn">Contact Us</a>
+									<a href="shop.html" class="boxed-btn">Visit Shop</a>
+									<a href="contact.html" class="bordered-btn">Contact Us</a>
 								</div>
 							</div>
 						</div>
@@ -195,7 +230,36 @@ include("../includs/navbar.php")
 
 			
 			<div class="row">
+
+				<?php
+				foreach($data as $ele){
+					if ($ele["is_discount"]){
+						echo '<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<div class="product-image">';
+							$pic=$ele["pic_main"];
+							$id=$ele["product_id"];
+							// echo $pic;
+						echo "<a href='single-product.php?product_id=$id'><img src='../admin_dashboard/img/products/$pic' alt=''></a>";
+						echo "</div>";
+						$name = $ele['product_name'];
+						echo "<h3>$name</h3>";
+						$old_price = $ele['price'];
+						$new_price =$old_price - ($ele['discount'] * $old_price)/100;
+						echo "<h3> <span class='product-price'><del>$old_price </del></span><span class='product-price'>$$new_price</span></h3>";
+						echo "<a href='add_to_cart.php?productid=$id' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a></div></div>";
+						// $url = getcwd();
+						// $url = (parse_url($url, PHP_URL_FRAGMENT));
+						// $url =str_replace('C:\xampp\htdocs',"localhost",$url);
+						// echo $url;
+						// $_SESSION["current_url"]= $url;
+					}
+				}
+				?>
+				<div class="col-lg-4 col-md-6 text-center">
+
 				<!-- <div class="col-lg-4 col-md-6 text-center">
+
 					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/standard.png" alt=""></a>
@@ -204,12 +268,18 @@ include("../includs/navbar.php")
 						<p class="product-price"> <span>1,999$ - 6,499$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
+
+				</div>
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+
 				</div> -->
 				<!-- <div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 				</div>  -->
 				<!-- <div class="col-lg-4 col-md-6 text-center"> -->
 					<!-- <div class="single-product-item">
+
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/sport.png" alt=""></a>
 						</div>
@@ -220,10 +290,13 @@ include("../includs/navbar.php")
 				</div>
 				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
 					<div class="single-product-item">
+
+
 					</div> -->
 				<!-- </div> -->
 				<!-- <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center"> -->
 					<!-- <div class="single-product-item">
+
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/cruiser1.png" alt=""></a>
 						</div>
@@ -231,6 +304,10 @@ include("../includs/navbar.php")
 						<p class="product-price"> <span>6,499$ - 18,799$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
+
+				</div>
+				<div class="col-lg-4 col-md-6 text-center">
+
 				</div>
 			</div>
 			</div>
@@ -248,6 +325,7 @@ include("../includs/navbar.php")
 				</div>
 			</div>
 				 <div class="col-lg-4 col-md-6 text-center">
+
 					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/dual-sport.png" alt=""></a>
@@ -276,32 +354,41 @@ include("../includs/navbar.php")
 								<p class="product-price"> <span>2,399$ - 6,499$</span> </p>
 								<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 							</div>
-						</div> -->
-
-
-
-
-						<!-- <div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="../img/category/dual-sport.png" alt=""></a>
 						</div>
-						<h3>Dual-Sport</h3>
-						<p class="product-price"> <span>3,399$ - 9,000$</span> </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div> -->
-
-
-
-						 <?php
-								require_once("../admin_dashboard/config.php");
-								$sql = "SELECT * FROM categories"; // query sentence
+						<!-- <?php
+			require_once("../admin_dashboard/config.php");
+			$sql = "SELECT * FROM categories"; // query sentence
                                 $conn->query($sql); // execute query 
                                 $array = ($conn->query($sql));                 
                             
-							foreach($array as$ele){
-							$category = "<div class='col-lg-4 col-md-6 text-center'><div class='single-product-item'><div class='product-image'>";
+																foreach($array as $ele){
+							$category = "<div class='row'>
+								<div class='col-lg-4 col-md-6 text-center'>
+									<div class='single-product-item'>
+										<div class='product-image'>";
+
 							$category_pic=$ele['category_pic'];
+
+							echo $category_pic;
+							$category_name=$ele['category_name'];
+							$category_pri=$ele['category_price'];
+							
+							$category .=	"<a href='single-product.html'><img src='/$category_pic' alt=''></a>
+							</div>";
+							$category .= "<h3>$category_name</h3>";
+							$category .= "<p class='product-price'> <span>$category_pri</span> </p>
+							<a href='cart.html' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a>
+						</div>
+					</div>
+				</div>";
+					echo $category;
+						}
+							?> -->
+							
+			</div>
+		</div>
+	</div>
+
 							$category .= "<a href='__shop.php'><img width=300px height=300px src='../admin_dashboard/$category_pic' alt=''></a>
 							</div>";
 							// echo $category_pic;
@@ -316,6 +403,7 @@ include("../includs/navbar.php")
 			</div>
 		</div>
 	</div>
+
 
 	<!-- end Categories section -->
 
@@ -341,10 +429,12 @@ include("../includs/navbar.php")
 					<h3><span class="orange-text">Deal</span> of the month</h3>
                     <h4>Cruiser Bikes</h4>
                     <div class="text">A cruiser motorcycle is a motorcycle in the style of American machines from the 1930s to the early 1960s, including those made by Harley-Davidson, Indian, Excelsior and Henderson. The riding position usually places the feet forward and the hands up, with the spine erect or leaning back slightly. Typical cruiser engines emphasize easy rideability and shifting, with plenty of low-end torque but not necessarily large amounts of horsepower, and are traditionally V-twins, but inline engines have become more common.</div>
+
 										
                     <!--Countdown Timer-->
                     <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2025/2/01"><div class="counter-column"><div class="inner"><span class="count" id="days"></span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count" id="hours"></span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count" id="minutes"></span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count"></span id="seconds">Secs</div></div></div></div>
                 	<a href="shop.php" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Shop Now </a>
+
                 </div>
             </div>
         </div>
@@ -408,7 +498,7 @@ include("../includs/navbar.php")
 						<h2>We are <span class="orange-text">MOTORBIKE</span></h2>
 						<p>We strive to provide the best possible service to motorcycle and scooter enthusiasts. Facilitating the process of owning motorcycles and scooters through their acquisition without down payment and easy installments.</p>
 						<p>The world of motorcycles will take you from the prison of movement to the freedom of movement, and that we seek to provide through us.</p>
-						<a href="about.php" class="boxed-btn mt-4">About US</a>
+						<a href="about.html" class="boxed-btn mt-4">About US</a>
 					</div>
 				</div>
 			</div>
@@ -487,37 +577,3 @@ include("../includs/navbar.php")
 
 </body>
 </html>
-<!-- <script>
-
-	// Set the date we're counting down to
-var countDownDate = new Date("Jan 5, 2029 15:37:25").getTime();
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get todays date and time
-  var now = new Date().getTime();
-
-  // Find the distance between now an the count down date
-  var distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in an element with id="demo"
-  document.getElementById("days").innerHTML = days ;
-  document.getElementById("hours").innerHTML =hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML =seconds;
-
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
-
-</script> -->

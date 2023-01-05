@@ -11,4 +11,5 @@ $added_product = [$product["product_id"],1,$product["product_name"],$product["de
 array_push($_SESSION["added_products"],$added_product); 
 // $url =$_SESSION["current_url"];
 // echo $url;
-header("location:index_2.php");
+// header("location:index_2.php");
+header("location:cart.php");
