@@ -73,13 +73,7 @@ session_start();
 			<div class="row">
 				<div class="col-lg-12">
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</div>
@@ -233,14 +227,16 @@ session_start();
 								</tr>
 							</tbody>
 						</table>
-						<button type="submit">Place Order</button>
+						<button type="submit" class="btn btn-danger rounded-pill m-2">Place Order</button>
 						<!-- <a href="#" class="boxed-btn">Place Order</a> -->
 					</div>
 					
 					<?php
-
-					if (($_SERVER['REQUEST_METHOD']=="POST") && isset($_SESSION[`user`]) && isset($_SESSION[`added_products`]) ) {
+					// print_r($_SESSION["added_products"]);
+						//  && isset($_SESSION[`user`]) 
+					if (($_SERVER['REQUEST_METHOD']=="POST") && ($_SESSION['added_products']) ) {
 						// $id = $_SESSION[`user_id`] ;
+						// print_r($_SESSION["added_products"]);
 						$id = 1 ;
 						$ADDRESS=$_POST["user_address"];
 						$PHONE=$_POST["user_phone"];
@@ -254,8 +250,8 @@ session_start();
 							$order_id = mysqli_fetch_array($order_id, MYSQLI_ASSOC);
 							$order_id = $order_id["order_id"];
 
-						// print_r($_POST);	
-						if(isset($_SESSION["added_products"]) ){
+						print_r($_POST);	
+						if(isset($_SESSION["added_products"])){
 						foreach($_SESSION["added_products"] as $ele){
 							$total = $ele[1]*$ele[6];
 							$sql = "INSERT INTO `order_details`(`order_id`, `product_id`, `quantity`, `total`) VALUES ('$order_id','$ele[0]','$ele[1]','$total')";

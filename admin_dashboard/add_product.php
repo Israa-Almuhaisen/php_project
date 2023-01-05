@@ -1,36 +1,21 @@
+<?php 
+session_status() === PHP_SESSION_ACTIVE ?: session_start();
+require("config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>DarkPan - Bootstrap 5 Admin Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
-    
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <?php include('./include/include_head.php');?>
+    <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">  
 
 <form action="" method="POST" enctype="multipart/form-data"
 >
@@ -43,9 +28,28 @@
               <label for="floatingPassword">product_name</label>
           </div>
           <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="floatingPassword"
-                  placeholder="category_id_for_product" name="category_id_for_product"> 
-              <label for="floatingPassword">category_id_for_product</label>
+          <select class="form-select" id="floatingSelect" name="product_category"
+                                    aria-label="Floating label select example">
+                                    <?php
+                                    $sql = "SELECT * FROM categories";
+                                    $data= $conn->query($sql);
+                                    foreach ($data as $ele) {
+                                        $c_id=$ele['category_id'];
+                                        $c_name=$ele['category_name' ];
+                                        if ($c_id == $result['category_id']){
+                                        echo "<option selected value='$c_id'>$c_name</option>";}else{
+                                        echo "<option value='$c_id'>$c_name</option>";
+                                        }
+                                    }
+                                    ?>
+                                    <!-- <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option> -->
+          </select>
+
+
+              <label for="floatingPassword">product_category</label>
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
@@ -81,8 +85,11 @@
       </div>
     </div>
 </form>
-</body>
-
+</div>
+</div>
+</div>
+</div>
+<?php include('./include/include_footer.php');?>
 <?php
     // add products in products table
       if($_SERVER["REQUEST_METHOD"]==="POST"){
@@ -92,7 +99,7 @@
         $filename = $_FILES["pic_main"]["name"];
         $filename=trim($filename);
         $tempname = $_FILES["pic_main"]["tmp_name"];
-        $folder = "../images/productpic/" . $filename;
+        $folder = "../images/productpic" . $filename;
         if (move_uploaded_file($tempname, $folder)) {
             echo "<h3>  Image uploaded successfully!</h3>";
         } else {
@@ -100,7 +107,7 @@
         }
     
         // insert products in database
-        $sql = "INSERT INTO products (product_name, description, model_year, price, category_id, pic_main, in_stock, discount) VALUES ('$_POST[product_name]', '$_POST[description]','$_POST[model_year]','$_POST[price]', '$_POST[category_id_for_product]','$filename', '$_POST[in_stock]', '$_POST[discount]' )";
+        $sql = "INSERT INTO products (product_name, product_category, description, model_year, price, pic_main, in_stock, discount) VALUES ('$_POST[product_name]', '$_POST[product_category]','$_POST[description]','$_POST[model_year]','$_POST[price]','$filename', '$_POST[in_stock]', '$_POST[discount]' )";
         $conn->query($sql);
         header("location: blank.php");
           echo $_POST["product_name"];

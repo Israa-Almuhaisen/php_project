@@ -1,22 +1,20 @@
-<?php
-include("./config.php");
-
-
- session_start();
-include ("./includers/head.php");
+<?php 
+session_status() === PHP_SESSION_ACTIVE ?: session_start();
+require("config.php");
 ?>
-<body>
-<div class="container-fluid position-relative d-flex p-0">
-<?php
-include ("./includers/sidebar.php");
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<div class="content">
-    <div>
-<?php
-include ("./includers/navbar.php");
+    <?php include('./include/include_head.php');?>
 
-?>
+
      <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-secondary rounded justify-content-center mx-0">
                     <!-- <div class="col-md-6 text-center"> -->
@@ -52,6 +50,12 @@ include ("./includers/navbar.php");
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputPassword3" name="user_address"value=<?php echo  $_SESSION["address"]; ?>>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                 <label for="formFile" class="form-label">change your photo</label>
                                 <input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" required>
                               </div>
@@ -73,16 +77,17 @@ include ("./includers/navbar.php");
                  </div>
                  
     </div> 
-    </div>
-</div>
+    <!-- </div>
+    </div> -->
+
+
+
+                                    
+<!-- Footer Start -->
+<?php include('./include/include_footer.php');?>
 <?php
-include ("./includers/java.php");
 
 ?>
-</div>
-</body>
-
-</html>
 
 
 <?php
@@ -99,17 +104,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $new_email=$_POST["email"];
     $new_phone=$_POST["user_phone"];
     $new_password=$_POST["user_pass"];
+    $new_address=$_POST["user_address"];
 
-
-
+    if (isset($_FILES['image'])){
+        
+    
     $image = $_FILES['image']['name'];
+    $image =trim($image);
     // قراءة حجم الصورة
        $image_size = $_FILES['image']['size'];
     // تحديد المسار الموجودة فيه الصورة
        $image_tmp_name = $_FILES['image']['tmp_name'];
     // تحديد المسار الجديد للصورة و تذكر انه يجب انشاء مجلد جديد مشابه للاسم المختار في المسار الجديد
-       $image_folder = './img/'.$image;
-    
+       $image_folder = '../images/adminpic/'.$image;
+    //    if($insert_products){
+    //     if($image_size < 2000000){
+           move_uploaded_file($image_tmp_name, $image_folder);
+    //     }
+        $id = $_SESSION["user_id"];
+          $conn->query("UPDATE `users` SET `user_name`='$new_name',`phone`='$new_phone',`email`='$new_email',`password`='$new_password',`pic`='$image' WHERE user_id = '$id'");
+          $_SESSION["user_name"]= $_new_name;
+          $_SESSION["email"]= $new_email;
+          $_SESSION["phone"]= $_new_phone;
+          $_SESSION["password"]= $new_password;
+          $_SESSION["pic"]= $image;
+          $_SESSION["address"]= $new_address;
+     }else {
+        $id = $_SESSION["user_id"];
+          $conn->query("UPDATE `users` SET `user_name`='$new_name',`phone`='$new_phone',`email`='$new_email',`password`='$new_password',`address`='$new_address' WHERE user_id = '$id'");
+     }
     
     // قراءة جميع المنتجات الموجودة في الداتابيس لتأكد من ان اسم المنتج غير متكرر , جدول المنتجات-عمود الاسم
     
@@ -118,20 +141,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     // القيام برفع كافة تفاصيل المنتج التي تم ادخالها و يجب التاكد من ان عدد الاعمدة مساوي لعدد البيانات المراد رفعها
     
-          $insert_products = $conn->prepare("INSERT INTO `users`(pic) VALUES(?)");
-          $insert_products->execute([$image]);
+        //   $insert_products = $conn->prepare("INSERT INTO `users`(pic) VALUES(?)");
+        //   $insert_products->execute([$image]);
+        
     
     
     // شرط للتأكد من ان حجم الصورة اقل من 2 ميجا
     
     
-          if($insert_products){
-             if($image_size < 2000000){
-                move_uploaded_file($image_tmp_name, $image_folder);
-             }
-    
-          }
-
+          
+          $_SESSION["user_name"]= $_POST["name"];
+          $_SESSION["email"]= $_POST["email"];
+          $_SESSION["phone"]= $_POST["user_phone"];
+          $_SESSION["password"]= $_POST["user_pass"];
+          $_SESSION["pic"]= $image;
+        // echo  $_SESSION["user_name"];
+        // echo  $_SESSION["email"];
+        // echo  $_SESSION["phone"];
+        // echo  $_SESSION["password"];
+        // echo  $_SESSION["pic"];
         }
+
+
+
 
 ?>

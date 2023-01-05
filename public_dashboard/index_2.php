@@ -355,18 +355,14 @@
 								<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 							</div>
 						</div>
-						<!-- <?php
+						 <?php
 			require_once("../admin_dashboard/config.php");
 			$sql = "SELECT * FROM categories"; // query sentence
                                 $conn->query($sql); // execute query 
                                 $array = ($conn->query($sql));                 
                             
-																foreach($array as $ele){
-							$category = "<div class='row'>
-								<div class='col-lg-4 col-md-6 text-center'>
-									<div class='single-product-item'>
-										<div class='product-image'>";
-
+							foreach($array as $ele){
+							$category = "<div class='col-lg-4 col-md-6 text-center'><div class='single-product-item'><div class='product-image'>";
 							$category_pic=$ele['category_pic'];
 
 							echo $category_pic;
