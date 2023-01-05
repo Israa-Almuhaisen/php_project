@@ -15,20 +15,14 @@
 
 }
 
-body{
-    
-   background-color: rgb(255, 255, 255);
+body{ 
+   background-color:rgb(66, 44, 44);
    background-size: cover;
  
 }
 .logo{
     display:block;
     width: 13%;
-    /* margin-bottom:10px; */
-    position: relative; 
-     bottom: 1cm;
-     right: 10px;
-   
 } 
 
 .cont{

@@ -7,9 +7,9 @@
 										<li><a href="index_2.html">Slider Home</a></li>
 									</ul>
 								</li> -->
-								<li><a href="shop.php">Shop</a>
-								<li><a href="about.php">About</a></li>
-								<li><a href="contact.php">Contact</a></li>
+								<li><a style=font-size:25px; href="shop.php">Shop</a>
+								<li><a style=font-size:25px; href="about.php">About</a></li>
+								<li><a style=font-size:25px; href="contact.php">Contact</a></li>
 								
 									<!-- <ul class="sub-menu">
 										<li><a href="shop.html">Standard</a></li>
@@ -20,9 +20,9 @@
 										<li><a href="cart.html">Electric</a></li>
 									</ul> -->
 								<!-- </li> -->
-								<li><a href="../loginuser.php">login</a></li>
+								<li><a style=font-size:25px; href="../loginuser.php">login</a></li>
 
-								<li><a href="../userregister.php">register</a></li>
+								<li><a style=font-size:25px; href="../userregister.php">register</a></li>
 								<li>
 									<div class="header-icons">
 										<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart fa-2x"></i></a>
