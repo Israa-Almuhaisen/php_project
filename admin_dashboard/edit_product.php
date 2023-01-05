@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $e_pic = $_POST['edit_pic_main'];
     $e_stock = $_POST['edit_in_stock'];
     $e_discount = $_POST['edit_discount'];
-    $sql = "UPDATE products SET `product_name`='$e_name',`product_category`='$e_category',`description`='$e_description',`model_year`='$e_model',`price`='$e_price',`pic_main`='$e_pic',
+    $sql = "UPDATE products SET `product_name`='$e_name',`category_id`='$e_category',`description`='$e_description',`model_year`='$e_model',`price`='$e_price',`pic_main`='$e_pic',
     `in_stock`='$e_stock',`discount`='$e_discount' WHERE product_id = $id";
     $res = $conn->query($sql);
     
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingPassword"
                   placeholder="Password" name="edit_product_category"  value=<?php
-            echo $result["product_category"];
+            echo $result["category_id"];
             ?>>
               <label for="floatingPassword">product_category</label>
           </div>

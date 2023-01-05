@@ -92,7 +92,7 @@
         $filename = $_FILES["pic_main"]["name"];
         $filename=trim($filename);
         $tempname = $_FILES["pic_main"]["tmp_name"];
-        $folder = "./img/products/" . $filename;
+        $folder = "../images/productpic/" . $filename;
         if (move_uploaded_file($tempname, $folder)) {
             echo "<h3>  Image uploaded successfully!</h3>";
         } else {
@@ -100,7 +100,7 @@
         }
     
         // insert products in database
-        $sql = "INSERT INTO products (product_name, product_category, description, model_year, price, pic_main, in_stock, discount) VALUES ('$_POST[product_name]', '$_POST[category_id_for_product]','$_POST[description]','$_POST[model_year]','$_POST[price]','$filename', '$_POST[in_stock]', '$_POST[discount]' )";
+        $sql = "INSERT INTO products (product_name, description, model_year, price, category_id, pic_main, in_stock, discount) VALUES ('$_POST[product_name]', '$_POST[description]','$_POST[model_year]','$_POST[price]', '$_POST[category_id_for_product]','$filename', '$_POST[in_stock]', '$_POST[discount]' )";
         $conn->query($sql);
         header("location: blank.php");
           echo $_POST["product_name"];
