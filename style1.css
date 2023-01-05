@@ -3,7 +3,6 @@
     --Color-1:white;
     --bgcolor-2:rgb(0, 0, 0);
     --brcolor-3:rgb(203, 47, 47);
-   
    }
 
 
@@ -15,32 +14,29 @@
 }
 
 body{
-    
-   background-color: rgb(253, 253, 253);
+   background-color: rgb(83, 60, 60);
    background-size: cover;
- 
 }
 .logo{
     display:block;
-    width: 13%;
-    /* margin-bottom:10px; */
+    margin-top: 30px;
     position: relative; 
-     bottom: 1cm;
-     right: 30px;
-   
+   left: 60px;
+   top: 20px;
+    /* margin-bottom:10px; */
 } 
 
 
 
 .wel {
-    top: 9cm;
+    top: 8cm;
     left: 50%;
      position: relative; 
     transform: translate(-50%, -50%);
     height: 550px;
     width: 400px;
     box-shadow: 0px 20px 30px var(--bgcolor-2);
-    background:var(--bgcolor-2);
+    background:rgb(81, 31, 31);
     color: var(--white);
     justify-content: center;
     align-items: center;
@@ -55,7 +51,7 @@ body{
     color:var(--white);
   color: var(--brcolor-3);
   margin-top: 20px;
-  
+
 
 }
 
@@ -99,27 +95,17 @@ body{
     box-shadow: 0 10px 15px ;
     background: linear-gradient(var( --Color-1),var( --Color-1)); 
     transition: 0.3s; 
-   
+  
 }
 
 
 #sub:hover {
      transform: scale(1.1); 
+
  
 }
 
-.fp {
-   
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-    
-}
 
-.fp:hover {
-    text-decoration: underline;
-    color: var(--Color-1);
-}
 .acc {
   
     text-decoration: none;
