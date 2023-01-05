@@ -157,7 +157,7 @@ session_start();
 									$name=$ele[2];
 									$html .= "<td class='product-name'>$name</td>";
 									if ($ele[11]){
-									$price=$ele[6]-(($ele[6]*$ele[12])/100);}else {
+									$price=$ele[6]-(($ele[6]* $ele[12])/100);}else {
 										$price=$ele[6];
 									}
 									$html .= "<td class='product-price'>$price</td>";

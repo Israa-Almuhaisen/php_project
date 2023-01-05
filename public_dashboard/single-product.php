@@ -107,7 +107,7 @@ include("../admin_dashboard/config.php");
 	<!-- single product -->
 	<?php
 	// nnnn = product id sent in url
-	$product_id = $_GET["pid"];
+	$product_id = $_GET["product_id"];
 	// $product_id = 1;
 	$sql = "select * from products where product_id = $product_id";
 	$data= $conn->query($sql);
@@ -137,7 +137,7 @@ include("../admin_dashboard/config.php");
 						<p class="single-product-pricing"><span></span>
 						<?php
 							echo $product["price"] ;
-							echo " JOD" ;
+							echo " $" ;
 							?>
 						</p>
 						<p>
@@ -150,9 +150,10 @@ include("../admin_dashboard/config.php");
 								<input type="number" name="qun" value="1" min="1" 
 								max="<?php
 								echo $product["in_stock"] ?>">
-								<button type="submit">
+								<!-- <button type="submit">
 							<p type="submit"><a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-								</button>
+								</button> -->
+								<a href="add_to_cart.php?productid=<?=$product['product_id']?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 							</form>
 							<?php
 							if ($_SERVER['REQUEST_METHOD']=="POST") {
@@ -196,10 +197,10 @@ include("../admin_dashboard/config.php");
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="section-title">	
+					<!-- <div class="section-title">	
 						<h3><span class="orange-text">Related</span> Products</h3>
-						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p> -->
-					</div>
+						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+					</div> -->
 				</div>
 			</div>
 			<div class="row">

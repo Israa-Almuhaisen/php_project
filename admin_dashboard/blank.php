@@ -50,6 +50,7 @@
         require_once("config.php");
         // session_start();
         include("./includers/sidebar.php");
+        
         ?>
         <!-- Sidebar End -->
 
@@ -97,6 +98,7 @@
                                 $conn->query($sql); // execute query 
                                 $array = ($conn->query($sql));                 
                                     foreach($array as $ele){
+                                        // delete product from admin_dashboard product table, not from database
                                         if($ele['product_is_deleted'] == 0){
                                     
                                         $P_id=$ele['product_id'];
@@ -140,6 +142,7 @@
 //     echo $elem["pic_main"];
 // }
                     ?>
+                    <!-- <img src="../" > -->
                     
 
 

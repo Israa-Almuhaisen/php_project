@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 require("../admin_dashboard/config.php");
 ?>
 
@@ -133,18 +134,39 @@ require("../admin_dashboard/config.php");
 			<?php					
 					$sql = "SELECT * FROM `products`";
 					$select_products= $conn->query($sql);
-					foreach($select_products as $fetch_product){
+					foreach($select_products as $product){
 					?>
 
-							<div class="col-lg-4 col-md-6 text-center <?= $fetch_product['category_id']; ?>">
+							<div class="col-lg-4 col-md-6 text-center <?= $product['category_id']; ?>">
 								<div class="single-product-item">
 									<div class="product-image">
-										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>">
-										<img width=200px height=200px src='../upload/<?= $fetch_product['pic_main']; ?>' alt="">
+										<a href="single-product.php?pid=<?= $product['product_id']; ?>">
+										<img width=200px height=200px src='../images/product/<?= $product['pic_main']; ?>' alt="">
 										</a>
-										<h3><?= $fetch_product['product_name']; ?></h3>
-										<p class="product-price"><span><?= $fetch_product['color']; ?></span> <?= $fetch_product['price']; ?>$ </p>
-										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>" class="cart-btn">Select</a>					
+										<h2 STYLE="font-size:27px"><?= $product['product_name']; ?></h2>
+										<span STYLE="font-size:20px"><?= $product['price']; ?></span> <SPAN STYLE="font-size:16pt">$</SPAN></br></br>
+										<!-- <a href="add_to_cart.php?productid=<?= $product['product_id']; ?>" class="cart-btn"> <SPAN STYLE="font-size:16pt">Add to Cart</SPAN> </a>					 -->
+										<form>
+											<!-- <input type="hidden" name="selected_prod" value=<?=$selected_prod;?>> -->
+									
+											<!-- <button type="submit" class="cart-btn> -->
+											<a href="add_to_cart.php?productid=<?=$product['product_id']?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+											<!-- </button> -->
+										</form>
+										<?php
+											// if ($_SERVER['REQUEST_METHOD']=="POST") {
+											//  $_SESSION["added_products"] = [];
+											// 	// $added_product = [$product["product_id"],$_POST["qun"],$product["product_name"],$product["description"],$product["model_year"],$product["brand"],$product["price"],$product["category_id"],$product["pic_main"],$product["rate"],$product["in_stock"],$product["is_discount"],$product["discount"]];
+											// 	// $added_product = array($_POST["selected_prod"]);
+											// 	$added_product = unserialize($_POST["selected_prod"]);
+											// 	// print_r($added_product);
+											// 	// if (! isset($_SESSION["added_products"])){
+											// 	// $_SESSION["added_products"] = [];
+											// 	// }
+											// 	array_push($_SESSION["added_products"],$added_product);
+											// 	print_r($_SESSION["added_products"]);
+											// }
+										?>
 									</div>
 								</div>
 							</div>
@@ -154,7 +176,7 @@ require("../admin_dashboard/config.php");
 				
 			</div>
 
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="pagination-wrap">
 						<ul>
@@ -166,7 +188,7 @@ require("../admin_dashboard/config.php");
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<!-- end products -->
