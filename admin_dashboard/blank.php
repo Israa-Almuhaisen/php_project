@@ -97,6 +97,7 @@
                                 $conn->query($sql); // execute query 
                                 $array = ($conn->query($sql));                 
                                     foreach($array as $ele){
+                                        // delete product from admin_dashboard product table, not from database
                                         if($ele['product_is_deleted'] == 0){
                                     
                                         $P_id=$ele['product_id'];
@@ -114,7 +115,7 @@
                                 $html .= "<td>$desc</td>";
                                 $html .= "<td>$mod</td>";
                                 $html .= "<td>$pri</td>";
-                                $html .= "<td><img width='100px';height='100px' src='../admin_dashboard/img/products/$pic'></td>";
+                                $html .= "<td><img width='100px';height='100px' src='../images/productpic/$pic'></td>";
                                 $html .= "<td>$sto</td>";
                                 $html .= "<td>$dis</td>";
                                 $html .= "<td><a href='delete_product.php?deleteid=$P_id'><button>delete</button></a><hr><a href='edit_product.php?editid=$P_id'><buttont>edit</a></button></a></td></tr>";

@@ -50,8 +50,8 @@
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="index.html">
-								<img src="../public_dashboard/assets/img/logomotor (2).png"alt="">
+							<a href="index_2.php">
+								<img src="../public_dashboard/assets/img/logomotor (2).png" alt="">
 							</a>
 						</div>
 						<!-- logo -->

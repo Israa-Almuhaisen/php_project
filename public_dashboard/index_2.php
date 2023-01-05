@@ -40,6 +40,10 @@ $data= $conn->query($sql);
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
+	<!-- Css Bootstrap  -->
+	<style><?php include("../cssBootstrap/bootstrap.css"); ?></style>
+	
+	<!-- <link rel="stylesheet" href="../cssBootstrap/bootstrap.css"> -->
 
 </head>
 <body>
@@ -75,25 +79,6 @@ include("../includs/navbar.php")
 		</div>
 	</div>
 	<!-- end header -->
-	
-	<!-- search area -->
-	<!-- <div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- end search area -->
 
 	<!-- home page slider -->
 	<div class="homepage-slider">
@@ -139,6 +124,61 @@ include("../includs/navbar.php")
 	<!-- end home page slider -->
 
 
+
+	<!-- Sale section  -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">
+						<h3><span class="orange-text">On</span> Sale </h3><br>
+					  <div class="alert alert-warning">Own your dream bike</div>
+
+						<!-- <p>Own your dream bike</p> -->
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+					<?php
+							foreach($data as $ele){
+								if ($ele["is_discount"]){
+									echo '<div class="col-lg-4 col-md-6 text-center">
+									<div class="single-product-item">
+										<div class="product-image">';
+										$pic=$ele["pic_main"];
+										$id=$ele["product_id"];
+										// echo $pic;
+									echo "<a href='single-product.php?product_id=$id'>
+											 <img src='../images/productpic/$pic' alt=''>
+											 </a>";
+									echo "</div>";
+									$name = $ele['product_name'];
+									echo "<h2>$name</h2>";
+									$old_price = $ele['price'];
+									$new_price =$old_price - ($ele['discount'] * $old_price)/100;
+									echo "<p class='product-price'> 
+												<span style='font-size: 20px'><del>$old_price$</del></span>
+												<span style='font-size: 20px'>$new_price$</span> 
+												</p>";
+									echo "<a href='add_to_cart.php?productid=$id' class='cart-btn'>
+												<i class='fas fa-shopping-cart'></i>
+												Add to Cart </a>
+												</div></div>";
+									// $url = getcwd();
+									// $url = (parse_url($url, PHP_URL_FRAGMENT));
+									// $url =str_replace('C:\xampp\htdocs',"localhost",$url);
+									// echo $url;
+									// $_SESSION["current_url"]= $url;
+								}
+							}
+							?>
+			</div>
+		</div>
+	</div>
+	<!-- End Sale section  -->
+
+
 	<!-- Categories section -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
@@ -148,8 +188,6 @@ include("../includs/navbar.php")
 						<h3><span class="orange-text">Our</span> Categories</h3>
 						<p>No road is too long when you have good company</p>
 						<!-- <h3><span class="orange-text">On</span> Sale </h3> -->
-
-						<h3><span class="orange-text">On</span> Sale </h3>
 						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p> -->
 					</div>
 				</div>
@@ -157,46 +195,19 @@ include("../includs/navbar.php")
 
 			
 			<div class="row">
-				<?php
-				foreach($data as $ele){
-					if ($ele["is_discount"]){
-						echo '<div class="col-lg-4 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">';
-							$pic=$ele["pic_main"];
-							$id=$ele["product_id"];
-							// echo $pic;
-						echo "<a href='single-product.php?product_id=$id'><img src='../admin_dashboard/img/products/$pic' alt=''></a>";
-						echo "</div>";
-						$name = $ele['product_name'];
-						echo "<h3>$name</h3>";
-						$old_price = $ele['price'];
-						$new_price =$old_price - ($ele['discount'] * $old_price)/100;
-						echo "<h3> <span class='product-price'><del>$old_price </del></span><span class='product-price'>$$new_price</span></h3>";
-						echo "<a href='add_to_cart.php?productid=$id' class='cart-btn'><i class='fas fa-shopping-cart'></i> Add to Cart</a></div></div>";
-						// $url = getcwd();
-						// $url = (parse_url($url, PHP_URL_FRAGMENT));
-						// $url =str_replace('C:\xampp\htdocs',"localhost",$url);
-						// echo $url;
-						// $_SESSION["current_url"]= $url;
-					}
-				}
-				?>
-
-				<div class="col-lg-4 col-md-6 text-center">
+				<!-- <div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/standard.png" alt=""></a>
-							 <a href="single-product.html"><img src="../admin_dashboard/img/products/" alt=""></a> 
 						</div>
 						<h3>Standard</h3>
 						<p class="product-price"> <span>1,999$ - 6,499$</span> </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
 				</div> -->
+				<!-- <div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+				</div>  -->
 				<!-- <div class="col-lg-4 col-md-6 text-center"> -->
 					<!-- <div class="single-product-item">
 						<div class="product-image">
@@ -236,7 +247,7 @@ include("../includs/navbar.php")
 				</div>
 				</div>
 			</div>
-				<!-- <div class="col-lg-4 col-md-6 text-center">
+				 <div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
 							<a href="single-product.html"><img src="../img/category/dual-sport.png" alt=""></a>
@@ -291,20 +302,20 @@ include("../includs/navbar.php")
 							foreach($array as$ele){
 							$category = "<div class='col-lg-4 col-md-6 text-center'><div class='single-product-item'><div class='product-image'>";
 							$category_pic=$ele['category_pic'];
-							$category .= "<a href='single-product.html'><img src='$category_pic' alt=''></a>
+							$category .= "<a href='__shop.php'><img width=300px height=300px src='../admin_dashboard/$category_pic' alt=''></a>
 							</div>";
 							// echo $category_pic;
 							$category_name=$ele['category_name'];
 							$category_pri=$ele['category_price'];
-							$category .= "<h3>$category_name</h3>";
-							$category .= "<p class='product-price'> <span>$category_pri</span> </p>
-							</div></div></div>";
+							$category .= "<h2>$category_name</h2>";
+							$category .= "<p class='product-price'> <span style='font-size: 20px'>$category_pri</span> </p>
+							</div></div>";
 							echo $category;
 						}
-							?> 
-							
+							?>
 			</div>
-			</div>
+		</div>
+	</div>
 
 	<!-- end Categories section -->
 
@@ -330,13 +341,9 @@ include("../includs/navbar.php")
 					<h3><span class="orange-text">Deal</span> of the month</h3>
                     <h4>Cruiser Bikes</h4>
                     <div class="text">A cruiser motorcycle is a motorcycle in the style of American machines from the 1930s to the early 1960s, including those made by Harley-Davidson, Indian, Excelsior and Henderson. The riding position usually places the feet forward and the hands up, with the spine erect or leaning back slightly. Typical cruiser engines emphasize easy rideability and shifting, with plenty of low-end torque but not necessarily large amounts of horsepower, and are traditionally V-twins, but inline engines have become more common.</div>
-
-
+										
                     <!--Countdown Timer-->
-
-
-
-                    <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2020/2/01"><div class="counter-column"><div class="inner"><span class="count" id="days"></span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count" id="hours"></span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count" id="minutes"></span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count"></span id="seconds">Secs</div></div></div></div>
+                    <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2025/2/01"><div class="counter-column"><div class="inner"><span class="count" id="days"></span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count" id="hours"></span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count" id="minutes"></span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count"></span id="seconds">Secs</div></div></div></div>
                 	<a href="shop.php" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Shop Now </a>
                 </div>
             </div>
@@ -454,25 +461,7 @@ include("../includs/navbar.php")
 	
 	
 	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<p><i class="fa-solid fa-envelope"></i> obaidaalthunibat@gmail.com<br>
-					<i class="fa-solid fa-phone"></i> +00962781841055
-					</p>
-				</div>
-				<div class="col-lg-6 text-right col-md-12">
-					<div class="social-icons">
-						<ul>
-							<li><a href="https://web.facebook.com/darwazeh.motors/?_rdc=1&_rdr" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="https://www.instagram.com/darwazeh.motors/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include("Footer.php"); ?>
 	<!-- end copyright -->
 	
 	<!-- jquery -->
@@ -498,7 +487,7 @@ include("../includs/navbar.php")
 
 </body>
 </html>
-<script>
+<!-- <script>
 
 	// Set the date we're counting down to
 var countDownDate = new Date("Jan 5, 2029 15:37:25").getTime();
@@ -531,4 +520,4 @@ var x = setInterval(function() {
   }
 }, 1000);
 
-</script>
+</script> -->
