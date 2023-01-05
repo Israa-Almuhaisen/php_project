@@ -128,6 +128,7 @@ session_start();
 						        		<!-- <p><input name="user_email" type="email" placeholder="Email"></p> -->
 						        		<p><input name="user_address" type="text" placeholder="Address" required></p>
 						        		<p><input name="user_phone" type="tel" placeholder="Phone" required></p>
+										
 						        		<!-- <p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p> -->
 						        	
 						        </div>

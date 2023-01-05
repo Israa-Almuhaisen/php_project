@@ -245,7 +245,7 @@ session_start();
 									<td><strong><?php
 									echo $totalprice;
 									?></strong></td>
-									<td>jordanian dinar</td>
+									<td>US Dollars</td>
 								</tr>
 							</tbody>
 						</table>

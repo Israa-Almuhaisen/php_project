@@ -143,14 +143,15 @@ require("../admin_dashboard/config.php");
 										<a href="single-product.php?pid=<?= $product['product_id']; ?>">
 										<img width=200px height=200px src='../images/product/<?= $product['pic_main']; ?>' alt="">
 										</a>
-										<h3><?= $product['product_name']; ?></h3>
-										<span STYLE="font-size:20pt"><?= $product['price']; ?></span> <SPAN STYLE="font-size:17pt">$</SPAN></br></br>
+										<h2 STYLE="font-size:27px"><?= $product['product_name']; ?></h2>
+										<span STYLE="font-size:20px"><?= $product['price']; ?></span> <SPAN STYLE="font-size:16pt">$</SPAN></br></br>
 										<!-- <a href="add_to_cart.php?productid=<?= $product['product_id']; ?>" class="cart-btn"> <SPAN STYLE="font-size:16pt">Add to Cart</SPAN> </a>					 -->
-										<form action="" method="POST">
+										<form>
 											<!-- <input type="hidden" name="selected_prod" value=<?=$selected_prod;?>> -->
 									
-											<button type="submit"><a href="add_to_cart.php?productid=<?=$product['product_id']?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-											</button>
+											<!-- <button type="submit" class="cart-btn> -->
+											<a href="add_to_cart.php?productid=<?=$product['product_id']?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+											<!-- </button> -->
 										</form>
 										<?php
 											// if ($_SERVER['REQUEST_METHOD']=="POST") {
