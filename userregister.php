@@ -1,82 +1,43 @@
 <?php
-
-include './conect.php';
-
-// session_start();
-
-// if(isset($_SESSION['user_id'])){
-//    $user_id = $_SESSION['user_id'];
-// }else{
-//    $user_id = '';
-// };
-
-// if(isset($_POST['submit'])){
-
-//    $name = $_POST['name'];
-//    $name = htmlspecialchars($name, ENT_QUOTES);
-//    $email = $_POST['email'];
-//    $email = htmlspecialchars($email, ENT_QUOTES);
-//    $pass = sha1($_POST['pass']);
-//    $pass = htmlspecialchars($pass, ENT_QUOTES);
-//    $cpass = sha1($_POST['cpass']);
-//    $cpass = htmlspecialchars($cpass, ENT_QUOTES);
-
-//    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
-//    $select_user->execute([$email,]);
-//    $row = $select_user->fetch(PDO::FETCH_ASSOC);
-
-//    if($select_user->rowCount() > 0){
-//        echo('email already exists!');
-//    }else{
-//       if($pass != $cpass){
-//          echo('confirm password not matched!');
-//       }else{
-//          $insert_user = $conn->prepare("INSERT INTO `users`(user_name, email, password) VALUES(?,?,?)");
-//          $insert_user->execute([$name, $email, $cpass]);
-//          echo('registered successfully, login now please!');
-//       }
-//    }
-
-// }
-
-
-
+ session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $name_reg = "/^[a-zA-Z ]*$/";
     $phone_reg = "/^[0-9]{14}$/";
-    $pass_reg = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
+    $pass_reg = "/^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$/";
     $val_name = preg_match($name_reg, $_POST["user_name"]);
     $val_email=(filter_var($_POST["user_email"], FILTER_VALIDATE_EMAIL));
     $val_phone = preg_match($phone_reg, $_POST["user_phone"]);
-       $val_pass = preg_match($pass_reg, $_POST["user_pass"]);
+    $val_pass = preg_match($pass_reg, $_POST["user_pass"]);
     $val_repass = ($_POST["user_pass"] === $_POST["user_repass"]);
-    if (($val_repass && $val_pass && $val_phone && $val_email && $val_name)) {
-        require_once('conect.php');
-        $sql = "INSERT INTO users (user_name,phone,email,password) VALUES ('$_POST[user_name]','$_POST[user_phone]','$_POST[user_email]','$_POST[user_pass]')";
-        $conn->query($sql);
-        header("location:loginuser.php");
+  if ($val_repass && $val_pass  && $val_phone && $val_email && $val_name){
+    require_once('./admin_dashboard/config.php'); 
+    $sql = "INSERT INTO users (name, email, phone,password) VALUES ('$_POST[user_name]','$_POST[user_email]','$_POST[user_phone]','$_POST[user_pass]')";
+        $conn->query($sql); // بطبق جملة الكويري على الداتا بايس
+        header("location:loginus.php");
+    }else {
+        echo "invalid";
     }
-    else {
-        echo "invalid <br>";
+
+    if (!($val_repass)) {
+        echo "repass";
     }
-    // if (!($val_repass)) {
-    //     echo "repass <br>";
-    // }
-    // if (!($val_pass)) {
-    //     echo "pass <br>";
-    // }
-   
-   
-    // if (!($val_phone)) {
-    //     echo "phone <br>";
-    // }
-    // if (!($val_email)) {
-    //     echo "mail <br>";
-    // }
-    // if (!($val_name)) {
-    //     echo "name <br>";
-    // }
-   }
+    if (!($val_pass)) {
+        echo "pass";
+    }
+    if (!($val_date)) {
+        echo "date";
+    }
+    if (!($val_phone)) {
+        echo "phone";
+    }
+    if (!($val_email)) {
+        echo "mail";
+    }
+    if (!($val_name)) {
+        echo "name";
+    }
+    }
+
 ?>
 
 
@@ -89,17 +50,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
      <!-------icon page ------- -->
      <script src="https://kit.fontawesome.com/387212a066.js" crossorigin="anonymous"></script>
     <title>register</title>
+<style>
+    <?php
+    // include("");
+    ?>
+</style>
     <link rel="stylesheet" href="style2.css">
-</head>
-<body style="background-image: url('./men-riding-motorcycle-winter-day.jpg');
-background-size: cover;">
 
-    <img class="logo" src="../img/logoblack.png">
-    
-    <div class="cont">
+</head>
+<body  style="background-color: rgb(0, 0, 0);
+background-size: cover;" >
+ <div>
+  <img  style=" margin-top:25px; margin-left:40px"   src="../php_project/logomotor (2).png"  width="15%"    alt="">
+</div>
+    <div  style="background-color: white ;
+background-size: cover;  " class="cont">
         <div class="forms">
             <div class="form signup">
-                <span class="title">Registration</span>
+                <span style="color:black " class="title">Registration</span>
                 
    <form  action="" method="post">   
     <!-- <form id="form" action="post" > -->
@@ -137,13 +105,13 @@ background-size: cover;">
 
 
         <div class="input-field button">
-        <button type="submit" onclick="logSubmit()">Sign up</button>
+        <button style="color: white ;  box-shadow: 0 10px 15px black ; background:black "  type="submit" onclick="logSubmit()">Sign up</button>
         </div>
     </form>
 
     <div class="login-signup">
-        <span class="text"> Already a member?
-            <a href="loginuser.php" class="text login-link">Login Now</a>
+        <span style="color:black " class="text"> Already a member?
+            <a style="color:red " href="loginus.php" class="text login-link">Login Now</a>
         </span>
     </div>
       </div>
@@ -156,3 +124,45 @@ background-size: cover;">
 </html>
 
 
+
+
+
+
+
+
+<?php
+// if(isset($_SESSION['user_id'])){
+//    $user_id = $_SESSION['user_id'];
+// }else{
+//    $user_id = '';
+// };
+
+// if(isset($_POST['submit'])){
+
+//    $name = $_POST['name'];
+//    $name = htmlspecialchars($name, ENT_QUOTES);
+//    $email = $_POST['email'];
+//    $email = htmlspecialchars($email, ENT_QUOTES);
+//    $pass = sha1($_POST['pass']);
+//    $pass = htmlspecialchars($pass, ENT_QUOTES);
+//    $cpass = sha1($_POST['cpass']);
+//    $cpass = htmlspecialchars($cpass, ENT_QUOTES);
+
+//    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
+//    $select_user->execute([$email,]);
+//    $row = $select_user->fetch(PDO::FETCH_ASSOC);
+
+//    if($select_user->rowCount() > 0){
+//        echo('email already exists!');
+//    }else{
+//       if($pass != $cpass){
+//          echo('confirm password not matched!');
+//       }else{
+//          $insert_user = $conn->prepare("INSERT INTO `users`(user_name, email, password) VALUES(?,?,?)");
+//          $insert_user->execute([$name, $email, $cpass]);
+//          echo('registered successfully, login now please!');
+//       }
+//    }
+
+// }
+?>
