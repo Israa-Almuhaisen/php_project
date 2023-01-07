@@ -119,9 +119,8 @@ require("../admin_dashboard/config.php");
 								$sql = "SELECT * FROM categories WHERE category_is_deleted=0";
 								$select_categories= $conn->query($sql);
 								foreach($select_categories as $fetch_category){
-								?>									
-									
-									<li data-filter=".<?= $fetch_category['category_id']; ?>"><?= $fetch_category['category_name']; ?></li>
+								?>										
+								<li data-filter=".<?= $fetch_category['category_id']; ?>"><?= $fetch_category['category_name']; ?></li>
 								<?php
 								}
 								?>
@@ -140,7 +139,7 @@ require("../admin_dashboard/config.php");
 							<div class="col-lg-4 col-md-6 text-center <?= $product['category_id']; ?>">
 								<div class="single-product-item">
 									<div class="product-image">
-										<a href="single-product.php?pid=<?= $product['product_id']; ?>">
+										<a href="single-product.php?product_id=<?= $product['product_id']; ?>">
 										<img width=200px height=200px src='../images/product/<?= $product['pic_main']; ?>' alt="">
 										</a>
 										<h2 STYLE="font-size:27px"><?= $product['product_name']; ?></h2>

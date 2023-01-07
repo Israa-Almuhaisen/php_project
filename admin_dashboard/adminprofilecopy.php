@@ -19,7 +19,7 @@ $_SESSION["address"];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <?php include('./include/include_head.php');?>
 <div class="container-fluid pt-4 px-4">
-    <h1 style="text-align: center;" class="text-primary">Wellcome <?php echo  $_SESSION["user_name"]; ?></h1>
+    <h1 style="text-align: center;" class="text-primary">Welcome <?php echo  $_SESSION["user_name"]; ?></h1>
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4" style="">

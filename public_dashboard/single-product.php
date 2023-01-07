@@ -156,17 +156,17 @@ include("../admin_dashboard/config.php");
 								<a href="add_to_cart.php?productid=<?=$product['product_id']?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 							</form>
 							<?php
-							if ($_SERVER['REQUEST_METHOD']=="POST") {
+							// if ($_SERVER['REQUEST_METHOD']=="POST") {
 								
-								$added_product = [$product["product_id"],$_POST["qun"],$product["product_name"],$product["description"],$product["model_year"],$product["brand"],$product["price"],$product["category_id"],$product["pic_main"],$product["rate"],$product["in_stock"],$product["is_discount"],$product["discount"]];
-								if (! isset($_SESSION["added_products"])){
-								$_SESSION["added_products"] = [];
-								}
-								array_push($_SESSION["added_products"],$added_product);
-								print_r($_SESSION["added_products"]);
-							}
+							// 	$added_product = [$product["product_id"],$_POST["qun"],$product["product_name"],$product["description"],$product["model_year"],$product["brand"],$product["price"],$product["category_id"],$product["pic_main"],$product["rate"],$product["in_stock"],$product["is_discount"],$product["discount"]];
+							// 	if (! isset($_SESSION["added_products"])){
+							// 	$_SESSION["added_products"] = [];
+							// 	}
+							// 	array_push($_SESSION["added_products"],$added_product);
+								// print_r($_SESSION["added_products"]);
+							// }
 							?>
-							<p><strong>Categories: </strong>	
+							<p><strong>Category: </strong>	
 						
 							<?php
 							$cat_id = $product["category_id"];
@@ -188,6 +188,65 @@ include("../admin_dashboard/config.php");
 					</div>
 				</div>
 			</div>
+		</div>
+		<div style="margin-left:10% ;margin-right:10% ;">
+		<hr>
+			<h3>
+			Reviews:
+			</h3>
+			<?php
+			$query = "SELECT * FROM reviews INNER JOIN users 
+                ON (reviews.user_id = users.user_id) WHERE product_id = $product_id ";
+                $stmt = $conn->query($query);
+                $stmt =$stmt->fetch_all(MYSQLI_ASSOC); ?>
+<?php
+foreach ($stmt as $comment) {
+            $comment_id = $comment['review_id'];
+            $user_id = $comment['user_id'];
+            $product_id = $comment['product_id'];
+            $comment_content = $comment['review_text'];
+            $user_name = $comment['user_name'];
+			echo "<div style='margin-right: 10%;'>";
+			echo $user_name;
+			echo "<br>";
+			echo  $comment_content;
+			echo "<hr>";
+			echo "</div>";
+			
+		}
+		?>
+		<?php if (isset($_POST['submit_comment'])) {
+            if (isset($_SESSION['user'])) {
+				$user_id = (INT)$_SESSION['user']['id'];
+               $comment_text = $_POST['comment_text'];
+			   $id = (int)$product_id;
+               $sqlInserComment = "INSERT INTO reviews
+			   (user_id,product_id,review_text) 
+               VALUES ('$user_id','$id','$comment_text')";
+               $stmt = $conn->query($sqlInserComment);
+               $return_to_page =  $_SERVER['PHP_SELF'];
+            //    header("location:./single-product.php?product_id=$id");
+            }
+         }
+        //  if (!$stmt->execute([$product_id])) {
+        //     echo "NO";
+        //  }
+         ?>
+		 <form action="" method="post">
+			<div style="margin-right: 10%;">
+            <div >
+               <div >
+                  <textarea style="font-size:20px; border:2px solid silver"  class="form-control" name="comment_text" cols="12"  rows="3" placeholder="Add your comment" value="" required></textarea>
+               </div>
+            </div>
+            <div class="col-md- text-right">
+               <button type="submit" name="submit_comment" class="btn submit_btn" style="background-color:red ; font-size : 20px;color:white">
+
+                  Submit Now
+               </button>
+            </div>
+			</div>
+            </form>
 		</div>
 	</div>
 	<!-- end single product -->
