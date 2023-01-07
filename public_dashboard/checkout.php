@@ -235,9 +235,9 @@ session_start();
 					// print_r($_SESSION["added_products"]);
 						//  && isset($_SESSION[`user`]) 
 					if (($_SERVER['REQUEST_METHOD']=="POST") && ($_SESSION['added_products']) ) {
-						// $id = $_SESSION[`user_id`] ;
+						$id = $_SESSION['user']['id'] ;
 						// print_r($_SESSION["added_products"]);
-						$id = 1 ;
+						// $id = 1 ;
 						$ADDRESS=$_POST["user_address"];
 						$PHONE=$_POST["user_phone"];
 

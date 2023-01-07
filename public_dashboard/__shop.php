@@ -175,7 +175,7 @@ require("config1.php");
 							<div class="col-lg-4 col-md-6 text-center <?= $fetch_product['category_id']; ?>">
 								<div class="single-product-item">
 									<div class="product-image">
-										<a href="single-product.php?pid=<?= $fetch_product['product_id']; ?>">
+										<a href="single-product.php?product_id=<?= $fetch_product['product_id']; ?>">
 										<img width=200px height=200px src='../upload/<?= $fetch_product['pic_main']; ?>' alt="">
 										</a>
 										<h3><?= $fetch_product['product_name']; ?></h3>

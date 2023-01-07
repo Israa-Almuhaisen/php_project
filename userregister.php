@@ -13,29 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     require_once('./admin_dashboard/config.php'); 
     $sql = "INSERT INTO users (name, email, phone,password) VALUES ('$_POST[user_name]','$_POST[user_email]','$_POST[user_phone]','$_POST[user_pass]')";
         $conn->query($sql); // بطبق جملة الكويري على الداتا بايس
-        header("location:loginus.php");
-    }else {
-        echo "invalid";
-    }
-
-    if (!($val_repass)) {
-        echo "repass";
-    }
-    if (!($val_pass)) {
-        echo "pass";
-    }
-    if (!($val_date)) {
-        echo "date";
-    }
-    if (!($val_phone)) {
-        echo "phone";
-    }
-    if (!($val_email)) {
-        echo "mail";
-    }
-    if (!($val_name)) {
-        echo "name";
-    }
+        header("location:loginus.php");}
     }
 
 ?>
@@ -51,9 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
      <script src="https://kit.fontawesome.com/387212a066.js" crossorigin="anonymous"></script>
     <title>register</title>
 <style>
-    <?php
-    // include("");
-    ?>
 </style>
     <link rel="stylesheet" href="style2.css">
 
@@ -111,7 +86,7 @@ background-size: cover;  " class="cont">
 
     <div class="login-signup">
         <span style="color:black " class="text"> Already a member?
-            <a style="color:red " href="loginus.php" class="text login-link">Login Now</a>
+            <a style="color:red " href="loginuser.php" class="text login-link">Login Now</a>
         </span>
     </div>
       </div>
