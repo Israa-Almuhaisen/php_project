@@ -129,7 +129,7 @@ include("../admin_dashboard/config.php");
 			</h3>
 			<?php
 			$query = "SELECT * FROM reviews INNER JOIN users 
-                ON (reviews.user_id = users.user_id) WHERE product_id = $product_id ";
+                ON (reviews.user_id = users.user_id) WHERE product_id = $product_id AND state = 'Confirmed'";
                 $stmt = $conn->query($query);
                 $stmt =$stmt->fetch_all(MYSQLI_ASSOC); ?>
 <?php
@@ -157,10 +157,13 @@ foreach ($stmt as $comment) {
 			   (user_id,product_id,review_text) 
                VALUES ('$user_id','$id','$comment_text')";
                $stmt = $conn->query($sqlInserComment);
-			   echo "<meta http-equiv='refresh' content='0'>";
+			   echo "Your review will be confirmed soon,thank you";
+			//    echo "<meta http-equiv='refresh' content='0'>";
             //    $return_to_page =  $_SERVER['PHP_SELF'];
             //    header("location:./single-product.php?product_id=$id");
-            }
+            }else {
+				echo "Login to submit your review";
+			}
          }
 
          ?>
@@ -259,28 +262,7 @@ foreach ($stmt as $comment) {
 
 	
 	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
-						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
-					</p>
-				</div>
-				<div class="col-lg-6 text-right col-md-12">
-					<div class="social-icons">
-						<ul>
-							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include("Footer.php"); ?>
 	<!-- end copyright -->
 	
 	<!-- jquery -->

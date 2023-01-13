@@ -11,15 +11,9 @@ require("config.php");
     <meta content="" name="keywords">
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <?php include('./include/include_head.php');?>
-
-
      <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-secondary rounded justify-content-center mx-0">
-                    <!-- <div class="col-md-6 text-center"> -->
-                         <!-- <h3>Wellcome to admin dashboard</h3>  -->
-                    <!-- </div>  -->
                                         <!-- add user form -->
                                         <div class="col-sm-12 col-xl-8">
                         <div class="bg-secondary rounded h-100 p-4">
@@ -64,32 +58,14 @@ require("config.php");
                             </form>
                         </div>
                     </div>
-                   <?php
-                  
-                //     echo "<pre>";
-
-                //    print_r ($_SESSION);
-                //    echo "</pre>";
-                   ?>
-                  
-
-                    
-                 </div>
-                 
-    </div> 
-    <!-- </div>
-    </div> -->
+                 </div>  
+</div> 
 
 
 
                                     
 <!-- Footer Start -->
 <?php include('./include/include_footer.php');?>
-<?php
-
-?>
-
-
 <?php
 
  
@@ -161,8 +137,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // echo  $_SESSION["password"];
         // echo  $_SESSION["pic"];
         }
-
-
-
-
 ?>

@@ -87,7 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<body>
 <div class="container-fluid position-relative d-flex p-0">
 <?php
 session_start();
@@ -234,5 +233,6 @@ include("./include/include_navbar.php");
     </div> -->
 </div>
 </div>
+<?php include('./include/include_footer.php');?>
 </body>
 </html>

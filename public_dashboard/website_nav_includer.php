@@ -31,28 +31,28 @@
 							
 							<li><a href="contact.php">Contact</a></li>
 							<li><a href="shop.php">Shop</a>
-								<ul class="sub-menu">
+								<!-- <ul class="sub-menu">
 									<li><a href="shop.php">Standard</a></li>
 									<li><a href="shop.php">Sport</a></li>
 									<li><a href="shop.php">Cruiser</a></li>
 									<li><a href="shop.php">Dual-Sport</a></li>
 									<li><a href="shop.php">Scooter</a></li>
 									<li><a href="shop.php">Electric</a></li>
-								</ul>
+								</ul> -->
 								
 							</li>
 							<?php 
 							if (isset($_SESSION['user'])) {
 								if ($_SESSION['user']){
-								echo "<li><a href='./logout.php'>logout</a></li>";}else{
-									echo "<li><a href='./loginuser.php'>login</a></li><li><a href='./userregister.php'>register</a></li>";
+								echo "<li><a href='./logout.php'>Logout</a></li>";}else{
+									echo "<li><a href='./loginuser.php'>Login</a></li><li><a href='./userregister.php'>Register</a></li>";
 								}
 							}else{
-								echo "<li><a href='./loginuser.php'>login</a></li><li><a href='./userregister.php'>register</a></li>";}
+								echo "<li><a href='./loginuser.php'>Login</a></li><li><a href='./userregister.php'>Register</a></li>";}
 							?>
 							<li>
 								<div class="header-icons">
-									<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart fa-2x"></i></a>
+									<a class="shopping-cart" href="cart.php" style="font-size:13px ;"><i class="fas fa-shopping-cart fa-2x"></i></a>
 								</div>
 							</li>
 						</ul>

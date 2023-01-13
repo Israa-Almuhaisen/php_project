@@ -7,6 +7,6 @@ if (isset($_GET['deleteid'])){
     if ($result){
         header("location:users.php");
         }else {
-        echo "r";
+        // echo "r";
     }
 }

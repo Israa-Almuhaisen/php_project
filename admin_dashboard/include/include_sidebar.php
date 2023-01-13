@@ -46,6 +46,7 @@ $pic=$_SESSION["pic"];?>
                         </div>
                     </div> 
                     <a href="./order.php" class="nav-item nav-link <?php if (basename($_SERVER['PHP_SELF'])=="order.php") {echo 'active';}?>"><i class="fa-solid fa-coins"></i>Orders</a>
+                    <a href="./reviews.php" class="nav-item nav-link <?php if (basename($_SERVER['PHP_SELF'])=="reviews.php") {echo 'active';}?>"><i class="fa-solid fa-coins"></i>Comments</a>
                     <a href="./logout.php" class="nav-item nav-link "><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
                     </div>
                 </nav>
